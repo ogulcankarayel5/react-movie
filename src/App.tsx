@@ -1,7 +1,8 @@
 import React from 'react'
+import { MainRouter } from 'routes'
 
 function App(): JSX.Element {
-	return <div className='App'></div>
+	return <MainRouter />
 }
 
 export default App
