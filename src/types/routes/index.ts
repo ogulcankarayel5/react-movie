@@ -1,7 +1,5 @@
 export interface IRouteConfig {
-	key: string
 	path: string
-	component: React.ElementType
+	component: any
 	exact?: boolean
-	route: React.ElementType
 }

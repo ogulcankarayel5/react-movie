@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { MainRouter } from 'routes'
 
-function App(): JSX.Element {
+function App(): ReactElement {
 	return <MainRouter />
 }
 

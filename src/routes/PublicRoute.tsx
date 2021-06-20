@@ -4,7 +4,7 @@ import { Redirect, Route, RouteProps } from 'react-router-dom'
 export interface IPublicRoute extends RouteProps {
 	restricted: boolean
 	loggedIn: boolean
-	component: React.ComponentType<any>
+	component: any
 }
 
 export const PublicRoute = ({
