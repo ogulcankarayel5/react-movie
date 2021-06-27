@@ -1,5 +1,5 @@
 export interface IRouteConfig {
-	path: string
-	component: any
-	exact?: boolean
+  path: string
+  component: any
+  exact?: boolean
 }

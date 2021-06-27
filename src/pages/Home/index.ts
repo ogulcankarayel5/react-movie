@@ -1,1 +1,1 @@
-export * from 'pages/Home/Home'
+export * from 'pages/home/home'
