@@ -2,7 +2,7 @@ import React from 'react'
 
 interface ISliderContext {
   activeIndex: number
-  setSlide: (index: number) => void
+  setActiveIndex: (index: number) => void
 }
 
 export const SliderContext = React.createContext<null | ISliderContext>(null)

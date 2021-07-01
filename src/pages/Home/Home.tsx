@@ -6,16 +6,16 @@ import { BACKDROP_RESPONSIVE_SIZE, BACKDROP_SIZE } from 'utils'
 import Slider from 'components'
 
 export const Home = (): ReactElement => {
-  const [imageSize, setImageSize] = useState(BACKDROP_SIZE)
-  const isSmall = useMediaQuery('(max-width: 768px)')
+  // const [imageSize, setImageSize] = useState(BACKDROP_SIZE)
+  // const isSmall = useMediaQuery('(max-width: 768px)')
 
-  useEffect(() => {
-    if (isSmall) {
-      setImageSize(BACKDROP_RESPONSIVE_SIZE)
-    } else {
-      setImageSize(BACKDROP_SIZE)
-    }
-  }, [isSmall])
+  // useEffect(() => {
+  //   if (isSmall) {
+  //     setImageSize(BACKDROP_RESPONSIVE_SIZE)
+  //   } else {
+  //     setImageSize(BACKDROP_SIZE)
+  //   }
+  // }, [isSmall])
   return (
     <Slider>
       <Slider.Slide value={0}>

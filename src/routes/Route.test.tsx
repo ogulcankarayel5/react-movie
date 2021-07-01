@@ -4,17 +4,27 @@ import { Router } from 'react-router-dom'
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { MainRouter, PublicRoute } from 'routes'
+import { ThemeProvider } from 'styled-components'
+import { theme } from 'utils'
 
 const renderWithRouter = (ui: any, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route)
   const history = createMemoryHistory({ initialEntries: [route] })
 
-  return { ...render(<Router history={history}>{ui}</Router>), history }
+  return {
+    ...render(
+      <ThemeProvider theme={theme}>
+        <Router history={history}>{ui}</Router>
+      </ThemeProvider>
+    ),
+    history,
+  }
 }
 
 test('it should render the right route', () => {
-  renderWithRouter(<MainRouter />, { route: '/' })
-  expect(screen.getByText(/Home/i)).toBeInTheDocument()
+  const { history } = renderWithRouter(<MainRouter />, { route: '/' })
+
+  expect(history.location.pathname).toBe('/')
 })
 
 test('it should render the 404 page', () => {

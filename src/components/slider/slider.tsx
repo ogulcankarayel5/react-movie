@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   StyledContainer,
   StyledDotsContainer,
@@ -20,47 +20,40 @@ type ChildrenProps = {
 type SliderProps = {
   autoPlayTime?: number
   dots?: boolean
+  initialIndex?: number
 } & ChildrenProps
 
 const Slider = ({
   children,
-  autoPlayTime = 5000,
+  autoPlayTime = 10000000,
   dots = true,
+  initialIndex = 0,
 }: SliderProps): React.ReactElement => {
-  const [activeIndex, setActiveIndex] = useState<number>(0)
+  const [activeIndex, setActiveIndex] = useState<number>(initialIndex)
 
-  const nextSlide = () => {
-    const newIndex = activeIndex >= length - 1 ? 0 : activeIndex + 1
-    setActiveIndex(newIndex)
-  }
   useEffect(() => {
     const timer = setTimeout(() => {
-      nextSlide()
+      setActiveIndex((index) => (index >= length - 1 ? 0 : index + 1))
     }, autoPlayTime)
     return () => clearTimeout(timer)
-  }, [activeIndex])
+  }, [activeIndex, autoPlayTime])
 
-  const length = useMemo(() => {
-    return React.Children.count(children)
-  }, [])
+  const length = React.Children.count(children)
 
-  const setSlide = useCallback((index: number) => {
-    setActiveIndex(index)
-  }, [])
-
-  const value = useMemo(() => ({ activeIndex, setSlide }), [activeIndex])
+  const value = useMemo(() => ({ activeIndex, setActiveIndex }), [activeIndex])
 
   return (
     <SliderContext.Provider value={value}>
       <StyledContainer>
         {children}
         {dots && (
-          <StyledDotsContainer>
+          <StyledDotsContainer data-testid='dots'>
             {[...Array(length)].map((_, index) => {
               return (
                 <StyledDotContainer
+                  data-testid={`dot-${index}`}
                   key={index}
-                  onClick={() => setSlide(index)}
+                  onClick={() => setActiveIndex(index)}
                   isActive={index === activeIndex}
                 />
               )
@@ -81,6 +74,7 @@ const Slide = ({ children, value }: SlideProps) => {
 
   return (
     <StyledSlideContainer
+      data-testid={`${value}-slide`}
       style={{ marginLeft: value === 0 ? `-${activeIndex * 100}%` : 0 }}
     >
       {children}
@@ -94,7 +88,7 @@ type SliderImageProps = {
 const SliderImage = ({ src }: SliderImageProps) => {
   return (
     <Hey>
-      <StyledImage src={src} />
+      <StyledImage data-testid='img' src={src} />
     </Hey>
   )
 }
@@ -112,7 +106,7 @@ const SliderText = ({ text, ...props }: TextProps) => {
 }
 
 const SliderCaption = ({ children }: any) => {
-  return <StyledCaption>{children}</StyledCaption>
+  return <StyledCaption data-testid='caption'>{children}</StyledCaption>
 }
 
 Slider.Slide = Slide
