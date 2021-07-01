@@ -36,6 +36,9 @@ export const Home = (): ReactElement => {
       <Slider.Slide value={2}>
         <Slider.Image src='https://images6.alphacoders.com/794/794092.jpg' />
       </Slider.Slide>
+      <Slider.Slide value={3}>
+        <Slider.Image src='https://wallpapercave.com/wp/3nCc3Sq.jpg' />
+      </Slider.Slide>
     </Slider>
   )
 }
