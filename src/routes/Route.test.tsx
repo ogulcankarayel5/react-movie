@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { MainRouter, PublicRoute } from 'routes'
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'utils'
 
-const renderWithRouter = (ui: any, { route = '/' } = {}) => {
+export const renderWithRouter = (ui: ReactNode, { route = '/' } = {}): any => {
   window.history.pushState({}, 'Test page', route)
   const history = createMemoryHistory({ initialEntries: [route] })
 
