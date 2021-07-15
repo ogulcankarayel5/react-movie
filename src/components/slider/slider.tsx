@@ -25,7 +25,7 @@ type SliderProps = {
 
 const Slider = ({
   children,
-  autoPlayTime = 10000000,
+  autoPlayTime = 10000,
   dots = true,
   initialIndex = 0,
 }: SliderProps): React.ReactElement => {

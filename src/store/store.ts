@@ -2,6 +2,8 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux'
 import thunk, { ThunkMiddleware } from 'redux-thunk'
 import { createLogger } from 'redux-logger'
+import { MovieActionTypes, movieReducer } from 'store/movie'
+import { changeImagePathMiddleware } from './movie/middleware'
 
 declare global {
   interface Window {
@@ -9,19 +11,24 @@ declare global {
   }
 }
 
-export const rootReducer = combineReducers({})
+export const rootReducer = combineReducers({
+  movieReducer,
+})
 
-export type AppActions = any
+export type AppActions = MovieActionTypes
 
 export type AppState = ReturnType<typeof rootReducer>
 
-const loggerMiddleware = createLogger()
+const loggerMiddleware = createLogger({
+  predicate: () => process.env.NODE_ENV !== 'production',
+})
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export const middleware = [
   loggerMiddleware,
   thunk as ThunkMiddleware<AppState, AppActions>,
+  changeImagePathMiddleware,
 ]
 
 export const useTypedSelector: TypedUseSelectorHook<AppState> = useSelector

@@ -64,10 +64,10 @@ export const Hey = styled.div`
 `
 export const StyledDotsContainer = styled.div`
   display: flex;
+  width: 100%;
   position: absolute;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: center;
 `
 export const StyledDotContainer = styled.div<{ isActive: boolean }>`
   border-radius: 50%;
