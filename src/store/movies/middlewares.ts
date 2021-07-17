@@ -1,4 +1,3 @@
-import { GET_POPULAR_SUCCESS } from 'store/movie/constants'
 /* eslint-disable @typescript-eslint/ban-types */
 import { Middleware } from 'redux'
 import { IMovie } from 'services'
@@ -13,7 +12,7 @@ const TMDB_IMAGE_BASE_URL = (isPoster = false) => {
 
 export const changeImagePathMiddleware: Middleware<{}, AppState> =
   () => (next) => (action) => {
-    if (action.type !== GET_POPULAR_SUCCESS) {
+    if (!(action.type as string).includes('SUCCESS')) {
       next(action)
     } else {
       action.payload = action.payload.map((item: IMovie) => {

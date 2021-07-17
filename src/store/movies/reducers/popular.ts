@@ -1,6 +1,9 @@
-import { combineReducers } from 'redux'
-import { GET_POPULAR_REQUEST, GET_POPULAR_SUCCESS } from './constants'
-import { IMovieState, MovieActionTypes } from 'store/movie/types'
+import { IMovieState } from 'store/movies/commonTypes'
+import {
+  GET_POPULAR_REQUEST,
+  GET_POPULAR_SUCCESS,
+} from 'store/movies/constants'
+import { MovieActionTypes } from 'store/movies/types/popular'
 import { LoadingState } from 'types'
 
 const initialState: IMovieState = {
@@ -8,7 +11,7 @@ const initialState: IMovieState = {
   movies: [],
 }
 
-const topMovieReducer = (
+export const popularMovieReducer = (
   state = initialState,
   action: MovieActionTypes
 ): IMovieState => {
@@ -28,9 +31,3 @@ const topMovieReducer = (
       return state
   }
 }
-
-const movieReducer = combineReducers({
-  topMovies: topMovieReducer,
-})
-
-export default movieReducer

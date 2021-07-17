@@ -2,10 +2,10 @@
 
 exports[`snapshots should render correctly the slider 1`] = `
 <div
-  className="sc-gtsrHT bNtySs"
+  className="sc-jrsJWt jcyKdB"
 >
   <div
-    className="sc-dlnjwi jqJMsp"
+    className="sc-gtsrHT vDuLb"
     data-testid="0-slide"
     style={
       Object {
@@ -14,38 +14,38 @@ exports[`snapshots should render correctly the slider 1`] = `
     }
   >
     <div
-      className="sc-hKFxyN bhZNsx"
+      className="sc-dlnjwi bDByMF"
       data-testid="caption"
     >
       <p
-        className="sc-bdnxRM ksaGXG sc-pNWdM fQIpJF"
+        className="sc-bdnxRM ksaGXG sc-fujyAs bHOnkb"
         size="xl"
       >
         title
       </p>
       <p
-        className="sc-bdnxRM fmvsy sc-jrsJWt GCejX"
+        className="sc-bdnxRM fmvsy sc-pNWdM NHydp"
         size="medium"
       >
         description
       </p>
     </div>
     <div
-      className="sc-jSFjdj duCRrc"
+      className="sc-eCApnc daLoyN"
     >
       <img
-        className="sc-eCApnc jEkbAm"
+        className="sc-hKFxyN hgdXKu"
         data-testid="img"
         src="http://image.tmdb.org/t/p/original/iLLDiO4dbUfFEnRug8DuvFEl1NB.jpg"
       />
     </div>
   </div>
   <div
-    className="sc-gKAaRy eUZzQG"
+    className="sc-jSFjdj guJqDr"
     data-testid="dots"
   >
     <div
-      className="sc-iCoGMd jyzrzN"
+      className="sc-gKAaRy etQlyz"
       data-testid="dot-0"
       onClick={[Function]}
     />

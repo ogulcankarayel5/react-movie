@@ -2,4 +2,6 @@
 
 export enum Endpoints {
   Popular = 'movie/popular',
+  TopRated = 'movie/top_rated',
+  Tv = 'discover/tv',
 }

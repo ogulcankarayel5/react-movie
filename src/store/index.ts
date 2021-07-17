@@ -1,2 +1,2 @@
 export { store } from 'store/store'
-export * from 'store/movie'
+export * from 'store/movies'

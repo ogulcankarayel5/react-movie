@@ -15,7 +15,7 @@ export default {
 
       const config: AxiosRequestConfig = {
         method,
-        url: `${endpoint}?${queryParams}&api_key=${REACT_APP_API_KEY}`,
+        url: `${endpoint}?api_key=${REACT_APP_API_KEY}${queryParams}`,
       }
 
       axiosInstance(config)
@@ -33,7 +33,7 @@ const getParams = (params = {}) => {
   let queryParams = ''
 
   if (Object.keys(params).length > 0) {
-    queryParams = `?${Object.entries(params)
+    queryParams = `&${Object.entries(params)
       .map(([key, value]) => {
         return `${key}=${value}`
       })

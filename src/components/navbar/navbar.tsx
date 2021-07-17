@@ -11,7 +11,7 @@ import { useMediaQuery } from 'react-responsive'
 
 export const Navbar = (): ReactElement => {
   const [expanded, setExpanded] = useState(false)
-  const isMobile = useMediaQuery({ maxWidth: 768 })
+  const isMobile = useMediaQuery({ maxWidth: 992 })
 
   return (
     <NavbarContainer>

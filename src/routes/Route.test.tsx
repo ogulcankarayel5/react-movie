@@ -22,9 +22,9 @@ export const renderWithRouter = (ui: ReactNode, { route = '/' } = {}): any => {
 }
 
 test('it should render the right route', () => {
-  const { history } = renderWithRouter(<MainRouter />, { route: '/' })
+  const { history } = renderWithRouter(<MainRouter />, { route: '/films' })
 
-  expect(history.location.pathname).toBe('/')
+  expect(history.location.pathname).toBe('/films')
 })
 
 test('it should render the 404 page', () => {

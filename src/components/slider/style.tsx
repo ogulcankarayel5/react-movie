@@ -1,17 +1,21 @@
 import styled, { css } from 'styled-components'
 import { Text } from 'components/text'
-export const StyledContainer = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: hidden;
-  position: relative;
-`
+import { breakPoints } from 'utils'
+
 export const StyledSlideContainer = styled.div`
   max-height: 100vh;
   width: 100%;
   flex-shrink: 0;
   background-color: ${(props) => props.theme.colors.primary};
   transition: 750ms all ease-in-out;
+
+  @media (max-width: ${breakPoints.sm}) {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 `
 
 export const StyledCaption = styled.div`
@@ -68,6 +72,10 @@ export const StyledDotsContainer = styled.div`
   position: absolute;
   bottom: 10px;
   justify-content: center;
+
+  @media (max-width: ${breakPoints.sm}) {
+    bottom: 0;
+  }
 `
 export const StyledDotContainer = styled.div<{ isActive: boolean }>`
   border-radius: 50%;
@@ -86,6 +94,11 @@ export const StyledDotContainer = styled.div<{ isActive: boolean }>`
       background: #c51d3c;
       opacity: 1;
     `}
+
+  @media (max-width: ${breakPoints.sm}) {
+    width: 8px;
+    height: 8px;
+  }
 `
 
 export const StyledContent = styled.div``
@@ -104,7 +117,37 @@ export const StyledTitle = styled(Text)`
   ${lineClamp};
 `
 
-export const StyledText = styled(Text)`
+export const StyledText = styled(Text)<{ showOnMobile: boolean }>`
   color: #b8b8ba;
+
+  ${(props) =>
+    props.showOnMobile === false &&
+    css`
+      @media (max-width: ${breakPoints.sm}) {
+        display: none;
+      }
+    `}
   ${lineClamp};
+`
+
+export const StyledContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  position: relative;
+
+  @media (max-width: ${breakPoints.md}) {
+    top: 70px;
+
+    ${StyledTitle} {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    ${StyledCaption} {
+      padding-left: 0;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+  }
 `

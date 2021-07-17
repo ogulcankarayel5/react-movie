@@ -2,8 +2,9 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux'
 import thunk, { ThunkMiddleware } from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import { MovieActionTypes, movieReducer } from 'store/movie'
-import { changeImagePathMiddleware } from './movie/middleware'
+import { movieReducer } from 'store/movies/reducers'
+import { changeImagePathMiddleware } from 'store/movies/middlewares'
+import { MovieActionTypes } from 'store/movies/types'
 
 declare global {
   interface Window {

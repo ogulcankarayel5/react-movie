@@ -1,9 +1,10 @@
 import { useTypedSelector } from './../store/store'
-import { getSliderMovies } from 'store'
+import { getSliderMoviesSelector, getHomeTopMoviesSelector } from 'store'
 import { shallowEqual } from 'react-redux'
 
 export const useMovie = () => {
-  const sliderMovies = useTypedSelector(getSliderMovies, shallowEqual)
+  const sliderMovies = useTypedSelector(getSliderMoviesSelector, shallowEqual)
+  const topRatedHomeMovies = useTypedSelector(getHomeTopMoviesSelector)
 
-  return { sliderMovies }
+  return { sliderMovies, topRatedHomeMovies }
 }

@@ -1,12 +1,14 @@
-import { IMovie, MovieService } from 'services'
-
 import { Dispatch } from 'redux'
-import { GET_POPULAR_REQUEST, GET_POPULAR_SUCCESS } from './constants'
+import { IMovie, MovieService } from 'services'
+import {
+  GET_POPULAR_SUCCESS,
+  GET_POPULAR_REQUEST,
+} from 'store/movies/constants'
 import {
   IGetPopularMoviesRequestAction,
-  MovieActionTypes,
   IGetPopularMoviesSuccessAction,
-} from './types'
+  MovieActionTypes,
+} from 'store/movies/types/popular'
 
 const getPopularMoviesRequest = (): IGetPopularMoviesRequestAction => ({
   type: GET_POPULAR_REQUEST,

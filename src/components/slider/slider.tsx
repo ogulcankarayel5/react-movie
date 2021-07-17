@@ -25,7 +25,7 @@ type SliderProps = {
 
 const Slider = ({
   children,
-  autoPlayTime = 10000,
+  autoPlayTime = 100000000,
   dots = true,
   initialIndex = 0,
 }: SliderProps): React.ReactElement => {
@@ -101,8 +101,12 @@ const SliderTitle = ({ text, ...props }: TextProps) => {
   return <StyledTitle size='xl' text={text} {...props} />
 }
 
-const SliderText = ({ text, ...props }: TextProps) => {
-  return <StyledText text={text} {...props} />
+const SliderText = ({
+  text,
+  showOnMobile = false,
+  ...props
+}: TextProps & { showOnMobile?: boolean }) => {
+  return <StyledText text={text} showOnMobile={showOnMobile} {...props} />
 }
 
 const SliderCaption = ({ children }: any) => {

@@ -24,7 +24,7 @@ export const NavLinksContainer = styled.div`
     margin-left: auto;
   }
 
-  @media (max-width: ${breakPoints.md}) {
+  @media (max-width: ${breakPoints.lg}) {
     display: flex;
     flex-direction: column;
     & :last-child {
@@ -41,7 +41,7 @@ export const RigtSection = styled.div<{ expanded: boolean }>`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: ${breakPoints.md}) {
+  @media (max-width: ${breakPoints.lg}) {
     flex-direction: column;
     position: absolute;
     background-color: #101923;
@@ -73,6 +73,12 @@ export const NavItem = styled(NavLink)`
 
   @media (max-width: ${breakPoints.md}) {
     margin-top: 10px;
+  }
+
+  @media (max-width: ${breakPoints.xl}) {
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
   }
 `
 

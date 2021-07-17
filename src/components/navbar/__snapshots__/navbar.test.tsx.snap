@@ -15,14 +15,14 @@ exports[`snapshots should render correctly the navbar 1`] = `
     </p>
   </div>
   <div
-    className="sc-dIsUp bLHeGe"
+    className="sc-dIsUp fAcbup"
   >
     <div
-      className="sc-iqAclL hIAVMC"
+      className="sc-iqAclL kGGbNt"
     >
       <a
         aria-current="page"
-        className="sc-bqGGPW jkvktU active"
+        className="sc-bqGGPW iccmVB active"
         href="/"
         onClick={[Function]}
         style={
@@ -35,7 +35,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW jkvktU"
+        className="sc-bqGGPW iccmVB"
         href="/films"
         onClick={[Function]}
       >
@@ -43,7 +43,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW jkvktU"
+        className="sc-bqGGPW iccmVB"
         href="/tv-series"
         onClick={[Function]}
       >
@@ -51,7 +51,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW jkvktU"
+        className="sc-bqGGPW iccmVB"
         href="/cartoons"
         onClick={[Function]}
       >
@@ -59,7 +59,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW jkvktU"
+        className="sc-bqGGPW iccmVB"
         href="/show"
         onClick={[Function]}
       >
@@ -67,7 +67,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW jkvktU"
+        className="sc-bqGGPW iccmVB"
         href="/sign-in"
         onClick={[Function]}
       >
