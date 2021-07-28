@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import { popularMovieReducer } from 'store/movies/reducers/popular'
-import { topRatedMovieReducer } from 'store/movies/reducers/topRated'
+import { homeMovieReducer } from 'store/movies/reducers/movies'
 
 const movieReducer = combineReducers({
   popularMovies: popularMovieReducer,
-  topRatedMovies: topRatedMovieReducer,
+  homeMovies: homeMovieReducer,
 })
 
 export default movieReducer

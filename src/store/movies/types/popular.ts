@@ -14,6 +14,6 @@ export interface IGetPopularMoviesSuccessAction extends Action {
   payload: IMovie[]
 }
 
-export type MovieActionTypes =
+export type PopularMoviesActionTypes =
   | IGetPopularMoviesRequestAction
   | IGetPopularMoviesSuccessAction

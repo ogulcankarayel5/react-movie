@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 export const theme = {
   colors: {
     primary: '#111822',
+    white: '#9A9FA3',
   },
   fonts: {
     montserratBlack: 'MontserratBlack',

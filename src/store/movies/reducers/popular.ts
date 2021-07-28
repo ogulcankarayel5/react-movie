@@ -1,20 +1,21 @@
-import { IMovieState } from 'store/movies/commonTypes'
+import { IMovie } from 'services'
+
 import {
   GET_POPULAR_REQUEST,
   GET_POPULAR_SUCCESS,
 } from 'store/movies/constants'
-import { MovieActionTypes } from 'store/movies/types/popular'
+import { PopularMoviesActionTypes } from 'store/movies/types/popular'
 import { LoadingState } from 'types'
 
-const initialState: IMovieState = {
+const initialState: { loading: LoadingState; movies: IMovie[] } = {
   loading: LoadingState.Idle,
   movies: [],
 }
 
 export const popularMovieReducer = (
   state = initialState,
-  action: MovieActionTypes
-): IMovieState => {
+  action: PopularMoviesActionTypes
+): { loading: LoadingState; movies: IMovie[] } => {
   switch (action.type) {
     case GET_POPULAR_REQUEST:
       return {

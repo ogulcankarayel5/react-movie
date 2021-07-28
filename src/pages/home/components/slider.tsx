@@ -2,7 +2,7 @@ import Slider from 'components'
 import { useMovie } from 'hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getPopularMovies, getTopRatedMovies } from 'store'
+import { getPopularMovies } from 'store'
 import {
   SliderBottomContainer,
   SliderBottomTextContainer,
@@ -17,7 +17,6 @@ export const HomeSlider = () => {
     if (sliderMovies.length === 0) {
       dispatch(getPopularMovies())
     }
-    dispatch(getTopRatedMovies())
   }, [])
 
   return (

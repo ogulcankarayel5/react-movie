@@ -18,6 +18,21 @@ const getTopRatedMovies = async (): Promise<IMovieResponse> => {
   return response
 }
 
+const getUpcomingMovies = async (): Promise<IMovieResponse> => {
+  const response = await ApiService.makeRequest<IMovieResponse>(
+    { method: 'GET' },
+    Endpoints.Upcoming
+  )
+  return response
+}
+
+const getTrendingMovies = async (): Promise<IMovieResponse> => {
+  const response = await ApiService.makeRequest<IMovieResponse>(
+    { method: 'GET' },
+    Endpoints.Trending
+  )
+  return response
+}
 const getTvSeries = async (): Promise<any> => {
   const response = await ApiService.makeRequest<any>(
     { method: 'GET', params: { sort_by: 'popularity.desc' } },
@@ -30,6 +45,8 @@ const getTvSeries = async (): Promise<any> => {
 const movieService = {
   getPopularMovies,
   getTopRatedMovies,
+  getUpcomingMovies,
+  getTrendingMovies,
   getTvSeries,
 }
 

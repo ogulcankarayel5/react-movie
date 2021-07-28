@@ -7,7 +7,7 @@ import {
 import {
   IGetPopularMoviesRequestAction,
   IGetPopularMoviesSuccessAction,
-  MovieActionTypes,
+  PopularMoviesActionTypes,
 } from 'store/movies/types/popular'
 
 const getPopularMoviesRequest = (): IGetPopularMoviesRequestAction => ({
@@ -22,7 +22,7 @@ const getPopularMoviesSuccess = (
 })
 
 export const getPopularMovies =
-  () => async (dispatch: Dispatch<MovieActionTypes>) => {
+  () => async (dispatch: Dispatch<PopularMoviesActionTypes>) => {
     try {
       dispatch(getPopularMoviesRequest())
 
