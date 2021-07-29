@@ -15,7 +15,8 @@ export const changeImagePathMiddleware: Middleware<{}, AppState> =
     if (!(action.type as string).includes('SUCCESS')) {
       next(action)
     } else {
-      if (!/[0-9]/.test(Object.keys(action.payload).toString())) {
+      //!/[0-9]/.test(Object.keys(action.payload).toString())
+      if ('toprated' in action.payload) {
         Object.keys(action.payload).forEach((item) => {
           action.payload[item].forEach((movies: any) => {
             movies.backdrop_path = `${TMDB_IMAGE_BASE_URL()}${
@@ -26,7 +27,7 @@ export const changeImagePathMiddleware: Middleware<{}, AppState> =
             }`
           })
         })
-      } else {
+      } else if (/[0-9]/.test(Object.keys(action.payload).toString())) {
         action.payload = action.payload.map((item: IMovie) => {
           return {
             ...item,

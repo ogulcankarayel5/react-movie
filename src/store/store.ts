@@ -4,7 +4,11 @@ import thunk, { ThunkMiddleware } from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { movieReducer } from 'store/movies/reducers'
 import { changeImagePathMiddleware } from 'store/movies/middlewares'
-import { PopularMoviesActionTypes, MoviesActionTypes } from 'store/movies/types'
+import {
+  PopularMoviesActionTypes,
+  MoviesActionTypes,
+  DetailActionTypes,
+} from 'store/movies/types'
 
 declare global {
   interface Window {
@@ -16,7 +20,10 @@ export const rootReducer = combineReducers({
   movieReducer,
 })
 
-export type AppActions = PopularMoviesActionTypes | MoviesActionTypes
+export type AppActions =
+  | PopularMoviesActionTypes
+  | MoviesActionTypes
+  | DetailActionTypes
 
 export type AppState = ReturnType<typeof rootReducer>
 

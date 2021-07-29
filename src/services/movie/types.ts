@@ -20,3 +20,46 @@ export interface IMovie {
   vote_average: number
   vote_count: number
 }
+
+export interface ICastResponse {
+  id: number
+  cast: ICast[]
+  crew: ICrew[]
+}
+
+interface ICommonCredits {
+  adult: boolean
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  credit_id: string
+}
+export interface ICast extends ICommonCredits {
+  cast_id: number
+  character: string
+  order: number
+}
+
+export interface ICrew extends ICommonCredits {
+  job: string
+  department: string
+}
+
+export interface IVideo {
+  name: string
+  key: string
+  site: string
+  size: number
+  type: string
+  official: boolean
+  published_at: string
+  id: string
+}
+export interface IVideosResponse {
+  id: number
+  results: IVideo[]
+}

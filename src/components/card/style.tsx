@@ -13,7 +13,9 @@ export const StyledImage = styled.img`
   width: 100%;
   min-width: 75px;
   object-fit: cover;
-
+  &:hover {
+    transform: scale(1.02);
+  }
   @media (max-width: ${breakPoints.sm}) {
     width: 75px;
     height: 120px;
