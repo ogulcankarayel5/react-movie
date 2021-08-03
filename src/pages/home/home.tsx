@@ -13,7 +13,6 @@ export const Home = (): ReactElement => {
   useEffect(() => {
     dispatch(getHomeMovies())
   }, [])
-
   return (
     <>
       <HomeSlider />

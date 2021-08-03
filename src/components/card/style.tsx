@@ -13,6 +13,7 @@ export const StyledImage = styled.img`
   width: 100%;
   min-width: 75px;
   object-fit: cover;
+  cursor: pointer;
   &:hover {
     transform: scale(1.02);
   }
@@ -38,6 +39,7 @@ export const StyledText = styled(Text)<{ lineClamp?: boolean }>`
 export const StyledSubText = styled(StyledText)`
   margin-top: 5px;
   font-size: 0.7rem;
+  color: #2a3139;
 `
 
 export const StyledFooter = styled.div`

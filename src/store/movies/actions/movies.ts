@@ -1,3 +1,4 @@
+import { AppState } from './../../store'
 import { GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS } from 'store/movies/constants'
 import { Dispatch } from 'redux'
 
@@ -26,14 +27,23 @@ const getHomeMoviesSuccess = (
 })
 
 export const getHomeMovies =
-  () => async (dispatch: Dispatch<MoviesActionTypes>) => {
-    dispatch(getHomeMoviesRequest())
-
-    const toprated = await MovieService.getTopRatedMovies()
-    const upcoming = await MovieService.getUpcomingMovies()
-    const trending = await MovieService.getTrendingMovies()
-
-    dispatch(
-      getHomeMoviesSuccess(toprated.results, upcoming.results, trending.results)
-    )
+  () => async (dispatch: Dispatch<MoviesActionTypes>, getState: any) => {
+    if (
+      (getState() as AppState).movieReducer.homeMovies.movies.toprated
+        .length === 0
+    ) {
+      dispatch(getHomeMoviesRequest())
+      const toprated = await MovieService.getTopRatedMovies()
+      const upcoming = await MovieService.getUpcomingMovies()
+      const trending = await MovieService.getTrendingMovies()
+      dispatch(
+        getHomeMoviesSuccess(
+          toprated.results,
+          upcoming.results,
+          trending.results
+        )
+      )
+    } else {
+      return
+    }
   }

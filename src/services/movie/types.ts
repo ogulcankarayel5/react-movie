@@ -22,7 +22,7 @@ export interface IMovie {
 }
 
 export interface ICastResponse {
-  id: number
+  id: number | null
   cast: ICast[]
   crew: ICrew[]
 }
@@ -60,6 +60,6 @@ export interface IVideo {
   id: string
 }
 export interface IVideosResponse {
-  id: number
+  id: number | null
   results: IVideo[]
 }

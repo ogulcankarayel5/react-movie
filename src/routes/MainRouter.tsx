@@ -1,5 +1,5 @@
 import { Navbar } from 'components'
-import { Home } from 'pages'
+import { Detail, Home } from 'pages'
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { PublicRoute } from 'routes'
@@ -22,6 +22,7 @@ export const MainRouter = (): React.ReactElement => {
           restricted={false}
           loggedIn={false}
         />
+        <PublicRoute path='/detail/:id' component={Detail} />
         <Route path='*' component={() => <div>404</div>} />
       </Switch>
     </Router>

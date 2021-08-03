@@ -5,13 +5,13 @@ import { LoadingState } from 'types'
 const initialState: IDetailState = {
   loading: LoadingState.Idle,
   casts: {
-    id: 0,
+    id: null,
     cast: [],
     crew: [],
   },
   detail: [],
   videos: {
-    id: 0,
+    id: null,
     results: [],
   },
 }
@@ -25,14 +25,15 @@ export const detailReducer = (
       return {
         ...state,
         loading: LoadingState.Loading,
+        detail: [],
       }
     case GET_DETAIL_SUCCESS:
       return {
         ...state,
+        loading: LoadingState.Succeeded,
         casts: action.payload.casts,
         detail: action.payload.detail,
         videos: action.payload.videos,
-        loading: LoadingState.Succeeded,
       }
     default:
       return state
