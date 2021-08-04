@@ -47,3 +47,17 @@ export const InfoItemContainer = styled.div<{ extraMargin: boolean }>`
     flex: 2;
   }
 `
+export const DetailPartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+
+  & > *:last-child {
+    margin-top: 15px;
+  }
+`
+export const StarringContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`

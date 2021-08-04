@@ -8,6 +8,7 @@ import {
   SliderBottomTextContainer,
 } from 'pages/home/style'
 import { getYear } from 'utils'
+import { Link } from 'react-router-dom'
 
 export const HomeSlider = () => {
   const dispatch = useDispatch()
@@ -35,7 +36,10 @@ export const HomeSlider = () => {
               />
             </SliderBottomContainer>
           </Slider.Caption>
-          <Slider.Image src={item.backdrop_path} />
+          <Link to={`/detail/${item.id}`}>
+            <Slider.Image src={item.backdrop_path} />
+          </Link>
+
           <SliderBottomTextContainer>
             <Slider.Text
               size='small'

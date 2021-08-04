@@ -5,6 +5,26 @@ import { getYear } from 'utils'
 export const getDetailSelector = (state: AppState) =>
   state.movieReducer.detailReducer
 
+export const getTrailer = createSelector(getDetailSelector, (details) => {
+  if (details.videos.results.length !== 0) {
+    const filteredData = details.videos.results.filter(
+      (item) => item.type === 'Trailer'
+    )
+    return filteredData[0].key
+  }
+})
+
+export const getStarringCast = createSelector(getDetailSelector, (details) => {
+  if (details.casts.cast.length !== 0) {
+    return details.casts.cast
+      .filter(
+        (item) =>
+          item.known_for_department === 'Acting' && item.profile_path !== null
+      )
+      .slice(0, 14)
+  }
+})
+
 export const getDetailInfoSelector = createSelector(
   getDetailSelector,
   (details) => {
