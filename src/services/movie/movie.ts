@@ -73,6 +73,14 @@ const getVideos = async (movieId: number): Promise<IVideosResponse> => {
   return response
 }
 
+const getRecommended = async (movieId: number): Promise<IMovieResponse> => {
+  const response = await ApiService.makeRequest<IMovieResponse>(
+    { method: 'GET' },
+    `${Endpoints.Movie}/${movieId}/recommendations`
+  )
+
+  return response
+}
 const movieService = {
   getPopularMovies,
   getTopRatedMovies,
@@ -81,6 +89,7 @@ const movieService = {
   getMovieCast,
   getDetail,
   getVideos,
+  getRecommended,
   getTvSeries,
 }
 

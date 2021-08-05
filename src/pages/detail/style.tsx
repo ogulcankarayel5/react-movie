@@ -61,3 +61,16 @@ export const StarringContainer = styled.div`
   flex-wrap: wrap;
   gap: 10px;
 `
+export const CrewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+`
+export const CrewItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(:first-child) {
+    margin-top: 5px;
+  }
+`

@@ -14,6 +14,7 @@ const initialState: IDetailState = {
     id: null,
     results: [],
   },
+  recommended: [],
 }
 
 export const detailReducer = (
@@ -34,6 +35,7 @@ export const detailReducer = (
         casts: action.payload.casts,
         detail: action.payload.detail,
         videos: action.payload.videos,
+        recommended: action.payload.recommended,
       }
     default:
       return state

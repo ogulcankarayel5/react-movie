@@ -25,6 +25,14 @@ export const getDetail =
     const detail = await MovieService.getDetail(movieId)
     const casts = await MovieService.getMovieCast(movieId)
     const videos = await MovieService.getVideos(movieId)
+    const recommended = await MovieService.getRecommended(movieId)
 
-    dispatch(getDetailSuccess({ detail, casts, videos }))
+    dispatch(
+      getDetailSuccess({
+        detail,
+        casts,
+        videos,
+        recommended: recommended.results,
+      })
+    )
   }

@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom'
 
 type MoviesProps = {
   movies: IMovie[]
-  title: string
+  title?: string
 }
 export const Movies = ({ movies, title }: MoviesProps) => {
   return (
     <FilmContainer>
-      <FilmTitle text={title} size='medium' />
+      {title && <FilmTitle text={title} size='medium' />}
       <CardContainer>
         {movies?.map((item) => {
           return (

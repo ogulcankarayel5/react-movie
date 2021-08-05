@@ -25,6 +25,28 @@ export const getStarringCast = createSelector(getDetailSelector, (details) => {
   }
 })
 
+const groupBy = (arr: any, property: string | number) => {
+  return arr.reduce(
+    (acc: { [x: string]: any }, cur: { [x: string]: string | number }) => {
+      acc[cur[property]] = [...(acc[cur[property]] || []), cur]
+      return acc
+    },
+    {}
+  )
+}
+
+export const getCrew = createSelector(getDetailSelector, (details) => {
+  if (details.casts.crew.length !== 0) {
+    const filteredData = details.casts.crew.filter(
+      (item) =>
+        item.job === 'Director' ||
+        item.job === 'Screenplay' ||
+        item.job == 'Producer' ||
+        item.job === 'Original Music Composer'
+    )
+    return groupBy(filteredData, 'job')
+  }
+})
 export const getDetailInfoSelector = createSelector(
   getDetailSelector,
   (details) => {

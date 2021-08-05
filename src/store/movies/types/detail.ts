@@ -1,12 +1,13 @@
 import { GET_DETAIL_REQUEST, GET_DETAIL_SUCCESS } from './../constants'
 import { Action } from 'redux'
 import { LoadingState } from 'types'
-import { ICastResponse, IVideosResponse } from 'services'
+import { ICastResponse, IMovie, IVideosResponse } from 'services'
 
 export interface IDetail {
   videos: IVideosResponse
   detail: any
   casts: ICastResponse
+  recommended: IMovie[] | []
 }
 
 export interface IDetailState extends IDetail {

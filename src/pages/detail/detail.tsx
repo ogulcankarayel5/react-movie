@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {
   DetailContainer,
   DetailTitle,
@@ -11,22 +11,26 @@ import {
   InfoItemContainer,
   DetailPartContainer,
   StarringContainer,
+  CrewContainer,
+  CrewItemContainer,
 } from 'pages/detail/style'
 import { Card, YoutubeVideo } from 'components'
 import { useDispatch } from 'react-redux'
 import { getDetail } from 'store'
 import { useDetail } from 'hooks'
-import { IMAGE_BASE_URL } from 'utils'
+import { getYear, IMAGE_BASE_URL } from 'utils'
 import { LoadingState } from 'types'
+import { ICrew } from 'services'
 export const Detail = () => {
   const params = useParams<{ id: string }>()
   const dispatch = useDispatch()
-  const { generalDetail, detailInfo, trailer, starringCast } = useDetail()
+  const { generalDetail, detailInfo, trailer, starringCast, crew } = useDetail()
   const { detail, loading } = generalDetail
   useEffect(() => {
     const { id } = params
     dispatch(getDetail(parseInt(id)))
-  }, [])
+  }, [params.id])
+
   return (
     loading !== LoadingState.Idle &&
     loading !== LoadingState.Loading && (
@@ -63,7 +67,7 @@ export const Detail = () => {
             <StarringContainer>
               {starringCast?.map((item) => (
                 <>
-                  <Card small>
+                  <Card key={item.id} small>
                     <Card.Image
                       src={`${IMAGE_BASE_URL}/w200/${item.profile_path}`}
                     />
@@ -75,8 +79,48 @@ export const Detail = () => {
               ))}
             </StarringContainer>
           </DetailPartContainer>
+          <DetailPartContainer>
+            <CrewContainer>
+              <CrewItem arr={crew['Director']} title='Directed By' />
+              <CrewItem arr={crew['Producer']} title='Produced By' />
+              <CrewItem arr={crew['Screenplay']} title='Written By' />
+              <CrewItem
+                arr={crew['Original Music Composer']}
+                title='Music By'
+              />
+            </CrewContainer>
+          </DetailPartContainer>
+          <DetailPartContainer>
+            <DetailSubText size='medium' bold text='Recommended' />
+            <CrewContainer>
+              {generalDetail.recommended.slice(0, 4).map((item) => (
+                <Card key={item.id}>
+                  <Link to={`/detail/${item.id}`}>
+                    <Card.Image
+                      src={`${IMAGE_BASE_URL}/w300/${item.poster_path}`}
+                    />
+                  </Link>
+                  <Card.Footer>
+                    <Card.Text text={item.original_title} />
+                    <Card.SubText text={getYear(item.release_date)} />
+                  </Card.Footer>
+                </Card>
+              ))}
+            </CrewContainer>
+          </DetailPartContainer>
         </RightSide>
       </DetailContainer>
     )
+  )
+}
+
+const CrewItem = ({ arr, title }: any) => {
+  return (
+    <CrewItemContainer>
+      <DetailSubText size='medium' bold text={title} />
+      {(arr as ICrew[]).map((item) => (
+        <DetailText key={item.id} size='medium' text={item.original_name} />
+      ))}
+    </CrewItemContainer>
   )
 }
