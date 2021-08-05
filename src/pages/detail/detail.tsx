@@ -3,8 +3,6 @@ import { Link, useParams } from 'react-router-dom'
 import {
   DetailContainer,
   DetailTitle,
-  DetailSubText,
-  DetailText,
   LeftSide,
   RightSide,
   InfoContainer,
@@ -13,6 +11,8 @@ import {
   StarringContainer,
   CrewContainer,
   CrewItemContainer,
+  StyledDetailSubText,
+  StyledDetailText,
 } from 'pages/detail/style'
 import { Card, YoutubeVideo } from 'components'
 import { useDispatch } from 'react-redux'
@@ -21,19 +21,32 @@ import { useDetail } from 'hooks'
 import { getYear, IMAGE_BASE_URL } from 'utils'
 import { LoadingState } from 'types'
 import { ICrew } from 'services'
+import { TextProps } from 'components'
+import { Loading } from 'components'
+
 export const Detail = () => {
   const params = useParams<{ id: string }>()
   const dispatch = useDispatch()
-  const { generalDetail, detailInfo, trailer, starringCast, crew } = useDetail()
+  const {
+    generalDetail,
+    detailInfo,
+    trailer,
+    starringCast,
+    crew,
+    recommended,
+  } = useDetail()
   const { detail, loading } = generalDetail
   useEffect(() => {
     const { id } = params
     dispatch(getDetail(parseInt(id)))
   }, [params.id])
 
+  if (loading === LoadingState.Loading) {
+    return <Loading />
+  }
+
   return (
-    loading !== LoadingState.Idle &&
-    loading !== LoadingState.Loading && (
+    loading !== LoadingState.Idle && (
       <DetailContainer>
         <LeftSide>
           <DetailTitle text={detail.original_title} />
@@ -47,7 +60,7 @@ export const Detail = () => {
                 extraMargin={item.name === 'IMDB'}
                 key={item.name}
               >
-                <DetailSubText size='medium' bold text={item.name} />
+                <DetailSubText text={item.name} />
                 <DetailText
                   size={item.name !== 'IMDB' ? 'medium' : 'large'}
                   text={item.value}
@@ -59,11 +72,11 @@ export const Detail = () => {
         <RightSide>
           <YoutubeVideo id={trailer} />
           <DetailPartContainer>
-            <DetailSubText size='medium' bold text='Plot' />
-            <DetailText size='medium' text={detail.overview} />
+            <DetailSubText text='Plot' />
+            <DetailText text={detail.overview} />
           </DetailPartContainer>
           <DetailPartContainer>
-            <DetailSubText size='medium' bold text='Starring' />
+            <DetailSubText text='Starring' />
             <StarringContainer>
               {starringCast?.map((item) => (
                 <>
@@ -91,9 +104,9 @@ export const Detail = () => {
             </CrewContainer>
           </DetailPartContainer>
           <DetailPartContainer>
-            <DetailSubText size='medium' bold text='Recommended' />
+            <DetailSubText text='Recommended' />
             <CrewContainer>
-              {generalDetail.recommended.slice(0, 4).map((item) => (
+              {recommended?.map((item) => (
                 <Card key={item.id}>
                   <Link to={`/detail/${item.id}`}>
                     <Card.Image
@@ -117,10 +130,18 @@ export const Detail = () => {
 const CrewItem = ({ arr, title }: any) => {
   return arr ? (
     <CrewItemContainer>
-      <DetailSubText size='medium' bold text={title} />
+      <DetailSubText text={title} />
       {(arr as ICrew[]).map((item) => (
-        <DetailText key={item.id} size='medium' text={item.original_name} />
+        <DetailText key={item.id} text={item.original_name} />
       ))}
     </CrewItemContainer>
   ) : null
+}
+
+const DetailSubText = ({ ...props }: TextProps) => {
+  return <StyledDetailSubText size='medium' bold {...props} />
+}
+
+const DetailText = ({ ...props }: TextProps) => {
+  return <StyledDetailText size='medium' {...props} />
 }

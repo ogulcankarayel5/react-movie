@@ -25,6 +25,11 @@ export const getStarringCast = createSelector(getDetailSelector, (details) => {
   }
 })
 
+export const getRecommended = createSelector(getDetailSelector, (details) => {
+  if (details.recommended.length !== 0) {
+    return details.recommended.slice(0, 4)
+  }
+})
 const groupBy = (arr: any, property: string | number) => {
   return arr.reduce(
     (acc: { [x: string]: any }, cur: { [x: string]: string | number }) => {

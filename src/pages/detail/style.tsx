@@ -25,11 +25,11 @@ export const DetailTitle = styled(Text)`
   margin-top: -50px;
 `
 
-export const DetailText = styled(Text)`
+export const StyledDetailText = styled(Text)`
   color: #4a5359;
 `
 
-export const DetailSubText = styled(DetailText)`
+export const StyledDetailSubText = styled(StyledDetailText)`
   color: #2a3139;
 `
 
