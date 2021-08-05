@@ -83,7 +83,7 @@ export const Detail = () => {
             <CrewContainer>
               <CrewItem arr={crew['Director']} title='Directed By' />
               <CrewItem arr={crew['Producer']} title='Produced By' />
-              <CrewItem arr={crew['Screenplay']} title='Written By' />
+              <CrewItem arr={crew['Novel']} title='Written By' />
               <CrewItem
                 arr={crew['Original Music Composer']}
                 title='Music By'
@@ -115,12 +115,12 @@ export const Detail = () => {
 }
 
 const CrewItem = ({ arr, title }: any) => {
-  return (
+  return arr ? (
     <CrewItemContainer>
       <DetailSubText size='medium' bold text={title} />
       {(arr as ICrew[]).map((item) => (
         <DetailText key={item.id} size='medium' text={item.original_name} />
       ))}
     </CrewItemContainer>
-  )
+  ) : null
 }

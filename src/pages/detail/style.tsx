@@ -64,7 +64,7 @@ export const StarringContainer = styled.div`
 export const CrewContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 30px;
 `
 export const CrewItemContainer = styled.div`
   display: flex;

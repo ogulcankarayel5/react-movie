@@ -40,9 +40,9 @@ export const getCrew = createSelector(getDetailSelector, (details) => {
     const filteredData = details.casts.crew.filter(
       (item) =>
         item.job === 'Director' ||
-        item.job === 'Screenplay' ||
-        item.job == 'Producer' ||
-        item.job === 'Original Music Composer'
+        item.job === 'Producer' ||
+        item.job === 'Original Music Composer' ||
+        item.job === 'Novel'
     )
     return groupBy(filteredData, 'job')
   }
