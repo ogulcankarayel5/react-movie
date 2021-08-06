@@ -6,8 +6,8 @@ type StyledCardProps = {
   small?: boolean
 }
 export const StyledCard = styled.div<StyledCardProps>`
-  height: ${(props) => (props.small ? 'auto' : '230px')};
-  width: ${(props) => (props.small ? '100px' : '150px')};
+  height: ${(props) => (props.small ? 'auto' : '250px')};
+  width: ${(props) => (props.small ? '120px' : '150px')};
   background-color: inherit;
   position: relative;
 
@@ -15,18 +15,22 @@ export const StyledCard = styled.div<StyledCardProps>`
     width: auto;
     height: auto;
   }
+
+  @media (max-width: ${breakPoints.md}) {
+    width: 100px;
+  }
 `
 
 export const StyledImage = styled.img<StyledCardProps>`
-  height: ${(props) => (props.small ? '100px' : '120px')};
-  width: ${(props) => (props.small ? 'auto' : '100%')};
+  height: ${(props) => (props.small ? '100px' : '200px')};
+  width: auto;
   min-width: 75px;
   object-fit: contain;
   cursor: pointer;
   &:hover {
     transform: scale(1.02);
   }
-  @media (max-width: ${breakPoints.sm}) {
+  @media (max-width: ${breakPoints.md}) {
     width: 75px;
     height: 120px;
   }

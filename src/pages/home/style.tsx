@@ -28,8 +28,12 @@ export const Image = styled.img``
 
 export const CardContainer = styled.div`
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
   padding-bottom: 30px;
+  @media (max-width: ${breakPoints.sm}) {
+    flex-wrap: nowrap;
+  }
 `
 
 export const FilmContainer = styled.div`
@@ -42,6 +46,10 @@ export const FilmContainer = styled.div`
 `
 
 export const FilmsContainer = styled.div`
+  padding-left: 100px;
+  @media (max-width: ${breakPoints.md}) {
+    padding-left: 0;
+  }
   & ${FilmContainer}:first-of-type {
     margin-top: 80px;
   }

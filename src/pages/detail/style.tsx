@@ -108,7 +108,7 @@ export const DetailPartContainer = styled.div`
 `
 export const StarringContainer = styled.div`
   display: flex;
-  overflow-x: scroll;
+  flex-wrap: wrap;
   gap: 10px;
 
   @media (max-width: ${breakPoints.sm}) {
@@ -118,6 +118,11 @@ export const StarringContainer = styled.div`
       border-radius: 50%;
       object-fit: cover;
     }
+  }
+
+  @media (max-width: ${breakPoints.md}) {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
   }
 `
 export const CrewContainer = styled.div`
