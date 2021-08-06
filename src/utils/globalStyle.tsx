@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'styled-normalize'
+import { breakPoints } from 'utils/breakpoints'
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -28,6 +29,15 @@ export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 16px;
     box-sizing: border-box;
+
+    @media (max-width: ${breakPoints.md}) {
+      font-size:13px;
+  }
+
+  @media (max-width: ${breakPoints.sm}) {
+      font-size:11px;
+  }
+
   }
 
   body {

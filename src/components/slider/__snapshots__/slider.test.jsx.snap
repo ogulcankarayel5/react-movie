@@ -18,13 +18,13 @@ exports[`snapshots should render correctly the slider 1`] = `
       data-testid="caption"
     >
       <p
-        className="sc-bdnxRM ksaGXG sc-fujyAs bHOnkb"
+        className="sc-bdnxRM gEfyOQ sc-fujyAs bHOnkb"
         size="xl"
       >
         title
       </p>
       <p
-        className="sc-bdnxRM fmvsy sc-pNWdM NHydp"
+        className="sc-bdnxRM cbGgDe sc-pNWdM NHydp"
         size="medium"
       >
         description

@@ -2,7 +2,7 @@ import React from 'react'
 import { CardContainer, FilmContainer, FilmTitle } from 'pages/home/style'
 import { Card } from 'components'
 import { IMovie } from 'services'
-import { getYear } from 'utils'
+import { getYear, IMAGE_BASE_URL } from 'utils'
 import { Link } from 'react-router-dom'
 
 type MoviesProps = {
@@ -18,7 +18,13 @@ export const Movies = ({ movies, title }: MoviesProps) => {
           return (
             <Card key={item.id}>
               <Link to={`/detail/${item.id}`}>
-                <Card.Image src={item.poster_path} />
+                <Card.Image
+                  src={
+                    item.poster_path.includes(IMAGE_BASE_URL)
+                      ? item.poster_path
+                      : `${IMAGE_BASE_URL}/w780/${item.poster_path}`
+                  }
+                />
               </Link>
               <Card.Footer>
                 <Card.Text text={item.original_title} />

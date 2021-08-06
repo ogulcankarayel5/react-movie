@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {
   DetailContainer,
   DetailTitle,
+  ImgContainer,
+  VideoContainer,
   LeftSide,
   RightSide,
   InfoContainer,
@@ -13,16 +15,18 @@ import {
   CrewItemContainer,
   StyledDetailSubText,
   StyledDetailText,
+  RecommendedContainer,
 } from 'pages/detail/style'
 import { Card, YoutubeVideo } from 'components'
 import { useDispatch } from 'react-redux'
 import { getDetail } from 'store'
 import { useDetail } from 'hooks'
-import { getYear, IMAGE_BASE_URL } from 'utils'
+import { IMAGE_BASE_URL } from 'utils'
 import { LoadingState } from 'types'
 import { ICrew } from 'services'
 import { TextProps } from 'components'
 import { Loading } from 'components'
+import { Movies } from 'pages/home/components/movies'
 
 export const Detail = () => {
   const params = useParams<{ id: string }>()
@@ -48,12 +52,14 @@ export const Detail = () => {
   return (
     loading !== LoadingState.Idle && (
       <DetailContainer>
-        <LeftSide>
+        <ImgContainer>
           <DetailTitle text={detail.original_title} />
           <img
             style={{ height: 'auto', maxWidth: '100%' }}
             src={`${IMAGE_BASE_URL}/w300/${detail.poster_path}`}
           />
+        </ImgContainer>
+        <LeftSide>
           <InfoContainer>
             {detailInfo?.map((item) => (
               <InfoItemContainer
@@ -69,8 +75,10 @@ export const Detail = () => {
             ))}
           </InfoContainer>
         </LeftSide>
-        <RightSide>
+        <VideoContainer>
           <YoutubeVideo id={trailer} />
+        </VideoContainer>
+        <RightSide>
           <DetailPartContainer>
             <DetailSubText text='Plot' />
             <DetailText text={detail.overview} />
@@ -105,21 +113,9 @@ export const Detail = () => {
           </DetailPartContainer>
           <DetailPartContainer>
             <DetailSubText text='Recommended' />
-            <CrewContainer>
-              {recommended?.map((item) => (
-                <Card key={item.id}>
-                  <Link to={`/detail/${item.id}`}>
-                    <Card.Image
-                      src={`${IMAGE_BASE_URL}/w300/${item.poster_path}`}
-                    />
-                  </Link>
-                  <Card.Footer>
-                    <Card.Text text={item.original_title} />
-                    <Card.SubText text={getYear(item.release_date)} />
-                  </Card.Footer>
-                </Card>
-              ))}
-            </CrewContainer>
+            <RecommendedContainer>
+              {recommended && <Movies movies={recommended} />}
+            </RecommendedContainer>
           </DetailPartContainer>
         </RightSide>
       </DetailContainer>

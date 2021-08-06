@@ -10,10 +10,15 @@ export const StyledCard = styled.div<StyledCardProps>`
   width: ${(props) => (props.small ? '100px' : '150px')};
   background-color: inherit;
   position: relative;
+
+  @media (max-width: ${breakPoints.sm}) {
+    width: auto;
+    height: auto;
+  }
 `
 
 export const StyledImage = styled.img<StyledCardProps>`
-  height: ${(props) => (props.small ? '140px' : '190px')};
+  height: ${(props) => (props.small ? '100px' : '120px')};
   width: ${(props) => (props.small ? 'auto' : '100%')};
   min-width: 75px;
   object-fit: contain;
@@ -30,6 +35,7 @@ export const StyledImage = styled.img<StyledCardProps>`
 export const StyledText = styled(Text)<{ lineClamp?: boolean }>`
   color: #4a5359;
   font-size: 1rem;
+  white-space: pre-wrap;
   ${(props) =>
     props.lineClamp &&
     css`
@@ -47,10 +53,14 @@ export const StyledSubText = styled(StyledText)`
 `
 
 export const StyledFooter = styled.div<StyledCardProps>`
-  ${(props) =>
+  /* ${(props) =>
     !props.small &&
     css`
       margin-left: 10px;
-    `}
+    `} */
   margin-top: 10px;
+
+  @media (max-width: ${breakPoints.sm}) {
+    margin-left: 0;
+  }
 `

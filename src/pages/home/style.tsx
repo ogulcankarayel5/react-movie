@@ -28,8 +28,6 @@ export const Image = styled.img``
 
 export const CardContainer = styled.div`
   display: flex;
-  justify-content: center;
-  overflow-x: auto;
   gap: 30px;
   padding-bottom: 30px;
 `
@@ -37,6 +35,10 @@ export const CardContainer = styled.div`
 export const FilmContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  overflow-x: auto;
 `
 
 export const FilmsContainer = styled.div`

@@ -2,27 +2,27 @@
 
 exports[`snapshots should render correctly the navbar 1`] = `
 <div
-  className="sc-kEqXSa eqgfZw"
+  className="sc-fFSPTT hnCUeK"
 >
   <div
-    className="sc-crzoAE jBEIDv"
+    className="sc-iemWCZ iXFNtQ"
   >
     <p
-      className="sc-bdnxRM hcKQoU sc-ksluID dbJFGA"
+      className="sc-bdnxRM kPOorQ sc-dlMDgC jJMtGt"
       size="medium"
     >
       MOVIES
     </p>
   </div>
   <div
-    className="sc-dIsUp fAcbup"
+    className="sc-dIvrsQ ewjPVJ"
   >
     <div
-      className="sc-iqAclL kGGbNt"
+      className="sc-bkbkJK bWSeVi"
     >
       <a
         aria-current="page"
-        className="sc-bqGGPW iccmVB active"
+        className="sc-hHEiqL iNSFzE active"
         href="/"
         onClick={[Function]}
         style={
@@ -35,7 +35,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW iccmVB"
+        className="sc-hHEiqL iNSFzE"
         href="/films"
         onClick={[Function]}
       >
@@ -43,7 +43,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW iccmVB"
+        className="sc-hHEiqL iNSFzE"
         href="/tv-series"
         onClick={[Function]}
       >
@@ -51,7 +51,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW iccmVB"
+        className="sc-hHEiqL iNSFzE"
         href="/cartoons"
         onClick={[Function]}
       >
@@ -59,7 +59,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW iccmVB"
+        className="sc-hHEiqL iNSFzE"
         href="/show"
         onClick={[Function]}
       >
@@ -67,7 +67,7 @@ exports[`snapshots should render correctly the navbar 1`] = `
       </a>
       <a
         aria-current={null}
-        className="sc-bqGGPW iccmVB"
+        className="sc-hHEiqL iNSFzE"
         href="/sign-in"
         onClick={[Function]}
       >
