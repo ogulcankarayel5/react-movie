@@ -10,7 +10,7 @@ export interface IPublicRoute extends RouteProps {
 export const PublicRoute = ({
   component: Component,
   restricted = false,
-  loggedIn,
+  loggedIn = false,
   ...rest
 }: IPublicRoute): ReactElement => {
   return (

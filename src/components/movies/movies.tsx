@@ -1,5 +1,9 @@
 import React from 'react'
-import { CardContainer, FilmContainer, FilmTitle } from 'pages/home/style'
+import {
+  CardContainer,
+  FilmContainer,
+  FilmTitle,
+} from 'components/movies/style'
 import { Card } from 'components'
 import { IMovie } from 'services'
 import { getYear, IMAGE_BASE_URL } from 'utils'

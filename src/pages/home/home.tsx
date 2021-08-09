@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 
 import { HomeSlider } from 'pages/home/components/slider'
-import { Movies } from 'pages/home/components/movies'
+import { Movies } from 'components/movies/movies'
 import { FilmsContainer } from 'pages/home/style'
 import { useDispatch } from 'react-redux'
 import { getHomeMovies } from 'store/movies/actions/movies'

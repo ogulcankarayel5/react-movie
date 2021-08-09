@@ -11,8 +11,6 @@ export const DetailContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto;
-  margin-top: 150px;
-  padding: 0 100px;
   grid-gap: 30px;
 
   @media (max-width: ${breakPoints.md}) {

@@ -1,6 +1,8 @@
 export { default } from 'components/slider'
+export { default } from 'components/select'
 export * from 'components/text'
 export * from 'components/navbar'
 export * from 'components/card'
 export * from 'components/video'
 export * from 'components/loading'
+export * from 'components/movies'

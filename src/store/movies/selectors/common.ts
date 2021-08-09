@@ -7,7 +7,7 @@ export const filterMovie = (movies: IMovie[]) => {
   const shuffled = filtered.sort(() => 0.5 - Math.random())
 
   // Get sub-array of first n elements after shuffled
-  const selected = shuffled.slice(0, 7)
+  const selected = shuffled.slice(0, 10)
 
   return selected
 }

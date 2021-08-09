@@ -1,7 +1,7 @@
 import { StyledText } from 'components/slider/style'
 import styled from 'styled-components'
 import { breakPoints } from 'utils'
-import { Text } from 'components'
+import { FilmContainer } from 'components/movies/style'
 export const SliderBottomContainer = styled.div`
   display: flex;
 
@@ -26,25 +26,6 @@ export const SliderBottomTextContainer = styled.div`
 
 export const Image = styled.img``
 
-export const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-bottom: 30px;
-  @media (max-width: ${breakPoints.sm}) {
-    flex-wrap: nowrap;
-  }
-`
-
-export const FilmContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-right: 15px;
-  padding-left: 15px;
-
-  overflow-x: auto;
-`
-
 export const FilmsContainer = styled.div`
   padding-left: 100px;
   @media (max-width: ${breakPoints.md}) {
@@ -57,10 +38,4 @@ export const FilmsContainer = styled.div`
   & ${FilmContainer}:not(:first-of-type) {
     margin-top: 40px;
   }
-`
-
-export const FilmTitle = styled(Text)`
-  color: ${(props) => props.theme.colors.white};
-  margin-bottom: 15px;
-  margin-left: 125px;
 `

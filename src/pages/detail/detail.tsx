@@ -26,7 +26,7 @@ import { LoadingState } from 'types'
 import { ICrew } from 'services'
 import { TextProps } from 'components'
 import { Loading } from 'components'
-import { Movies } from 'pages/home/components/movies'
+import { Movies } from 'components/movies/movies'
 
 export const Detail = () => {
   const params = useParams<{ id: string }>()
