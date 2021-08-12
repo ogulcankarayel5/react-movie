@@ -1,24 +1,15 @@
-export interface IMovieResponse {
-  page: number
+import { ICommonResponse, ICommonResults } from 'services/types'
+
+export interface IMovieResponse extends ICommonResponse {
   results: IMovie[]
-  total_results: number
-  total_pages: number
 }
 
-export interface IMovie {
+export interface IMovie extends ICommonResults {
   adult: boolean
-  backdrop_path: string
-  genre_ids: number[]
-  id: number
-  original_language: string
   original_title: string
-  overview: string
   popularity: number
-  poster_path: string
   release_date: string
   video: false
-  vote_average: number
-  vote_count: number
 }
 
 export interface ICastResponse {
@@ -62,4 +53,18 @@ export interface IVideo {
 export interface IVideosResponse {
   id: number | null
   results: IVideo[]
+}
+
+export interface IGenres {
+  genres: IGenre[]
+}
+export interface IGenre {
+  id: number | null
+  name: string
+}
+
+export interface ILanguage {
+  iso_639_1: string
+  english_name: string
+  name: string
 }

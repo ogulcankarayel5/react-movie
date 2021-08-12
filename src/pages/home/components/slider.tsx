@@ -1,4 +1,4 @@
-import Slider from 'components'
+import { Slider } from 'components'
 import { useMovie } from 'hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -7,7 +7,7 @@ import {
   SliderBottomContainer,
   SliderBottomTextContainer,
 } from 'pages/home/style'
-import { getYear } from 'utils'
+import { getYear, IMAGE_BASE_URL } from 'utils'
 import { Link } from 'react-router-dom'
 
 export const HomeSlider = () => {
@@ -37,7 +37,9 @@ export const HomeSlider = () => {
             </SliderBottomContainer>
           </Slider.Caption>
           <Link to={`/detail/${item.id}`}>
-            <Slider.Image src={item.backdrop_path} />
+            <Slider.Image
+              src={`${IMAGE_BASE_URL}/original/${item.backdrop_path}`}
+            />
           </Link>
 
           <SliderBottomTextContainer>

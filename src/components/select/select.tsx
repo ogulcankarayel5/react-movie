@@ -1,12 +1,29 @@
 import React from 'react'
 import { StyledSelect, StyledOption } from 'components/select/style'
+import { LoadingState } from 'types'
 
-const Select = () => {
-  return <StyledSelect></StyledSelect>
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  children: React.ReactNode
+  loading?: LoadingState
 }
 
-const Option = () => {
-  return <StyledOption></StyledOption>
+const Select = ({
+  children,
+  loading = LoadingState.Idle,
+  ...props
+}: SelectProps) => {
+  return (
+    <StyledSelect {...props}>
+      {loading !== LoadingState.Loading ? children : <option>...</option>}
+    </StyledSelect>
+  )
+}
+
+interface OptionProps extends React.OptionHTMLAttributes<HTMLOptionElement> {
+  children: React.ReactNode
+}
+const Option = ({ children, ...props }: OptionProps) => {
+  return <StyledOption {...props}>{children}</StyledOption>
 }
 
 Select.Option = Option

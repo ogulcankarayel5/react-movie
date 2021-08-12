@@ -6,5 +6,8 @@ export enum Endpoints {
   TopRated = 'movie/top_rated',
   Upcoming = 'movie/upcoming',
   Trending = 'trending/movie/week',
+  Discover = 'discover/movie',
+  Genre = 'genre/movie/list',
+  Language = 'configuration/languages',
   Tv = 'discover/tv',
 }

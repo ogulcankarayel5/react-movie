@@ -8,6 +8,7 @@ import { GeneralLayout } from 'components/layouts'
 const Detail = lazy(() => import('pages'), 'Detail')
 const Home = lazy(() => import('pages'), 'Home')
 const Films = lazy(() => import('pages'), 'Films')
+const Tv = lazy(() => import('pages'), 'Tv')
 
 export const MainRouter = (): React.ReactElement => {
   return (
@@ -17,7 +18,9 @@ export const MainRouter = (): React.ReactElement => {
           <GeneralLayout>
             <PublicRoute exact path='/' component={Home} />
             <PublicRoute path='/films' component={Films} />
-            <PublicRoute path='/detail/:id' component={Detail} />
+            <PublicRoute path='/tv' component={Tv} />
+            <PublicRoute path='/detail/tv/:id' component={Detail} />
+            <PublicRoute path='/detail/movie/:id' component={Detail} />
           </GeneralLayout>
 
           <PublicRoute component={() => <div>404</div>} />

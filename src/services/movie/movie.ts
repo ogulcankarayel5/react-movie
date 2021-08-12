@@ -2,6 +2,8 @@ import { ApiService } from 'services'
 import { Endpoints } from 'services/movie/endpoints'
 import {
   ICastResponse,
+  IGenres,
+  ILanguage,
   IMovieResponse,
   IVideosResponse,
 } from 'services/movie/types'
@@ -35,14 +37,6 @@ const getTrendingMovies = async (): Promise<IMovieResponse> => {
     { method: 'GET' },
     Endpoints.Trending
   )
-  return response
-}
-const getTvSeries = async (): Promise<any> => {
-  const response = await ApiService.makeRequest<any>(
-    { method: 'GET', params: { sort_by: 'popularity.desc' } },
-    Endpoints.Tv
-  )
-
   return response
 }
 
@@ -81,6 +75,43 @@ const getRecommended = async (movieId: number): Promise<IMovieResponse> => {
 
   return response
 }
+
+const getGenres = async (): Promise<IGenres> => {
+  const response = await ApiService.makeRequest<IGenres>(
+    { method: 'GET' },
+    Endpoints.Genre
+  )
+
+  return response
+}
+
+const getLanguages = async (): Promise<ILanguage[]> => {
+  const response = await ApiService.makeRequest<ILanguage[]>(
+    { method: 'GET' },
+    Endpoints.Language
+  )
+
+  return response
+}
+
+const discover = async (params: any): Promise<IMovieResponse> => {
+  const response = await ApiService.makeRequest<IMovieResponse>(
+    { method: 'GET', params },
+    Endpoints.Discover
+  )
+
+  return response
+}
+
+const discoverTv = async (params: any): Promise<IMovieResponse> => {
+  const response = await ApiService.makeRequest<IMovieResponse>(
+    { method: 'GET', params },
+    Endpoints.Tv
+  )
+
+  return response
+}
+
 const movieService = {
   getPopularMovies,
   getTopRatedMovies,
@@ -90,7 +121,10 @@ const movieService = {
   getDetail,
   getVideos,
   getRecommended,
-  getTvSeries,
+  discoverTv,
+  getGenres,
+  getLanguages,
+  discover,
 }
 
 export default movieService

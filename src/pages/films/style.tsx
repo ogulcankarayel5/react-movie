@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const NoDataContainer = styled.div`
   display: flex;
-  height: 100%;
   justify-content: center;
   align-items: center;
+  color: #343b42;
 `

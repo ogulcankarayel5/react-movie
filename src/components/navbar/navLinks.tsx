@@ -12,7 +12,7 @@ const navConfig = [
   },
   {
     name: 'TV SERIES',
-    path: '/tv-series',
+    path: '/tv',
   },
   {
     name: 'CARTOONS',

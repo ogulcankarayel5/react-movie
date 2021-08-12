@@ -19,14 +19,14 @@ import {
 } from 'pages/detail/style'
 import { Card, YoutubeVideo } from 'components'
 import { useDispatch } from 'react-redux'
-import { getDetail } from 'store'
+import { clearDetail, getDetail } from 'store'
 import { useDetail } from 'hooks'
 import { IMAGE_BASE_URL } from 'utils'
 import { LoadingState } from 'types'
 import { ICrew } from 'services'
 import { TextProps } from 'components'
 import { Loading } from 'components'
-import { Movies } from 'components/movies/movies'
+import { FilmSeries, Movies } from 'components/movies/movies'
 
 export const Detail = () => {
   const params = useParams<{ id: string }>()
@@ -43,6 +43,10 @@ export const Detail = () => {
   useEffect(() => {
     const { id } = params
     dispatch(getDetail(parseInt(id)))
+
+    return () => {
+      dispatch(clearDetail())
+    }
   }, [params.id])
 
   if (loading === LoadingState.Loading) {
@@ -114,7 +118,11 @@ export const Detail = () => {
           <DetailPartContainer>
             <DetailSubText text='Recommended' />
             <RecommendedContainer>
-              {recommended && <Movies movies={recommended} />}
+              {recommended && (
+                <Movies>
+                  <FilmSeries films={recommended} />
+                </Movies>
+              )}
             </RecommendedContainer>
           </DetailPartContainer>
         </RightSide>

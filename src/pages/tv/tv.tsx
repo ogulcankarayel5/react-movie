@@ -4,39 +4,38 @@ import {
   Filter,
   FilterTypes,
   Text,
-  FilmSeries,
+  TvSeries,
 } from 'components'
 import { useDiscover, useDiscoverParams } from 'hooks'
 import React from 'react'
 import { LoadingState } from 'types'
 import { NoDataContainer } from 'pages/films/style'
 
-export const Films = () => {
+export const Tv = () => {
   const { discover } = useDiscover()
-  const { loading, movies } = discover
+  const { loading, tv } = discover
   const { onChange } = useDiscoverParams(
     {
       imdb: '',
       genre: '',
       year: '',
       language: '',
-      adult: '',
     },
-    FilterTypes.Movie
+    FilterTypes.Tv
   )
 
   return (
     <>
-      <Filter onChange={onChange} type={FilterTypes.Movie} />
+      <Filter onChange={onChange} type={FilterTypes.Tv} />
       {loading === LoadingState.Loading ? (
         <Loading />
-      ) : movies.length === 0 ? (
+      ) : tv.length === 0 ? (
         <NoDataContainer>
-          <Text size='medium' text='Geçerli Film Verisi Bulunamadı' />
+          <Text size='medium' text='Geçerli Tv Show Verisi Bulunamadı' />
         </NoDataContainer>
       ) : (
         <Movies wrap>
-          <FilmSeries films={movies} />
+          <TvSeries tvSeries={tv} />
         </Movies>
       )}
     </>

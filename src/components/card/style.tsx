@@ -6,7 +6,7 @@ type StyledCardProps = {
   small?: boolean
 }
 export const StyledCard = styled.div<StyledCardProps>`
-  height: ${(props) => (props.small ? 'auto' : '250px')};
+  height: ${(props) => (props.small ? 'auto' : '275px')};
   width: ${(props) => (props.small ? '120px' : '150px')};
   background-color: inherit;
   position: relative;

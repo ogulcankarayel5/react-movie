@@ -1,0 +1,5 @@
+export * from 'store/reducers/popular'
+export { default as movieReducer } from 'store/reducers/root'
+export { detailReducer } from 'store/reducers/detail'
+export { discoverReducer } from 'store/reducers/discover'
+export { homeMovieReducer } from 'store/reducers/movies'
