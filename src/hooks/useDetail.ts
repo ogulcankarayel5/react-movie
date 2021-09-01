@@ -7,15 +7,23 @@ import {
   getStarringCast,
   getTrailer,
 } from 'store'
-import { shallowEqual } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
+import { useMemo } from 'react'
 
-export const useDetail = () => {
+export const useDetail = (type: string) => {
   const generalDetail = useTypedSelector(getDetailSelector, shallowEqual)
-  const detailInfo = useTypedSelector(getDetailInfoSelector, shallowEqual)
+  const info = useSelector(
+    (state: any) => getDetailInfoSelector(state, type),
+    shallowEqual
+  )
+
+  const detailInfo = useMemo(() => {
+    return info
+  }, [type])
+
   const trailer = useTypedSelector(getTrailer, shallowEqual)
   const starringCast = useTypedSelector(getStarringCast, shallowEqual)
   const crew = useTypedSelector(getCrew, shallowEqual)
   const recommended = useTypedSelector(getRecommended, shallowEqual)
-
-  return { generalDetail, detailInfo, trailer, starringCast, crew, recommended }
+  return { generalDetail, trailer, starringCast, crew, recommended, detailInfo }
 }

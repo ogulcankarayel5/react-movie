@@ -29,9 +29,9 @@ type FilmsProps = {
 export const FilmSeries = ({ films }: FilmsProps) => {
   return (
     <>
-      {films?.map((item) => (
+      {films?.map((item, index) => (
         <MovieCard
-          key={item.id}
+          key={`${item.id} - ${index}`}
           link={`/detail/movie/${item.id}`}
           path={item.poster_path}
           text={item.original_title}
@@ -47,9 +47,9 @@ type TvSeriesProps = {
 export const TvSeries = ({ tvSeries }: TvSeriesProps) => {
   return (
     <>
-      {tvSeries?.map((item) => (
+      {tvSeries?.map((item, index) => (
         <MovieCard
-          key={item.id}
+          key={`${item.id} - ${index}`}
           link={`/detail/tv/${item.id}`}
           path={item.poster_path}
           text={item.original_name}

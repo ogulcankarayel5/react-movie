@@ -36,7 +36,7 @@ export const HomeSlider = () => {
               />
             </SliderBottomContainer>
           </Slider.Caption>
-          <Link to={`/detail/${item.id}`}>
+          <Link to={`/detail/movie/${item.id}`}>
             <Slider.Image
               src={`${IMAGE_BASE_URL}/original/${item.backdrop_path}`}
             />

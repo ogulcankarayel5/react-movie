@@ -4,8 +4,12 @@ import {
   DISCOVER_REQUEST,
   DISCOVER_SUCCESS,
   DISCOVER_TV_SUCCESS,
+  LOAD_MORE_REQUEST,
   OPTIONS_REQUEST,
   OPTIONS_SUCCESS,
+  RESET_LIST,
+  RESET_PAGE,
+  SET_PAGE,
 } from 'store/constants'
 
 const initialState: IDiscoverState = {
@@ -13,9 +17,14 @@ const initialState: IDiscoverState = {
   movies: [],
   tv: [],
   optionsLoading: LoadingState.Idle,
+  loadMoreLoading: LoadingState.Idle,
   genres: [],
   years: [],
   languages: [],
+  page: {
+    movie: 1,
+    tv: 1,
+  },
 }
 
 export const discoverReducer = (
@@ -38,13 +47,44 @@ export const discoverReducer = (
       return {
         ...state,
         loading: LoadingState.Succeeded,
-        movies: action.payload,
+        loadMoreLoading: LoadingState.Succeeded,
+        movies: [...state.movies, ...action.payload],
       }
     case DISCOVER_TV_SUCCESS:
       return {
         ...state,
         loading: LoadingState.Succeeded,
-        tv: action.payload,
+        loadMoreLoading: LoadingState.Succeeded,
+        tv: [...state.tv, ...action.payload],
+      }
+    case LOAD_MORE_REQUEST:
+      return {
+        ...state,
+        loadMoreLoading: LoadingState.Loading,
+      }
+    case SET_PAGE: {
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          [action.payload]: state.page[action.payload] + 1,
+        },
+      }
+    }
+    case RESET_PAGE:
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          movie: 1,
+          tv: 1,
+        },
+      }
+    case RESET_LIST:
+      return {
+        ...state,
+        movies: [],
+        tv: [],
       }
     case OPTIONS_SUCCESS:
       return {

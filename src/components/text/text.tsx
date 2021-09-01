@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { StyledText } from 'components/text/style'
 
 export type TextProps = {
-  text: string
+  text: string | undefined
   bold?: boolean
   size?: 'small' | 'medium' | 'large' | 'xl'
 } & React.HTMLAttributes<HTMLParagraphElement>

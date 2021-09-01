@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import {
   DetailContainer,
   DetailTitle,
@@ -17,9 +17,9 @@ import {
   StyledDetailText,
   RecommendedContainer,
 } from 'pages/detail/style'
-import { Card, YoutubeVideo } from 'components'
+import { Card, FilterTypes, YoutubeVideo } from 'components'
 import { useDispatch } from 'react-redux'
-import { clearDetail, getDetail } from 'store'
+import { clearDetail, getDetail, getTvDetail } from 'store'
 import { useDetail } from 'hooks'
 import { IMAGE_BASE_URL } from 'utils'
 import { LoadingState } from 'types'
@@ -30,6 +30,7 @@ import { FilmSeries, Movies } from 'components/movies/movies'
 
 export const Detail = () => {
   const params = useParams<{ id: string }>()
+  const history = useHistory()
   const dispatch = useDispatch()
   const {
     generalDetail,
@@ -38,11 +39,16 @@ export const Detail = () => {
     starringCast,
     crew,
     recommended,
-  } = useDetail()
+  } = useDetail(history.location.pathname.split('/')[2])
   const { detail, loading } = generalDetail
   useEffect(() => {
     const { id } = params
-    dispatch(getDetail(parseInt(id)))
+    const isFilm = history.location.pathname.includes(FilterTypes.Movie)
+    if (isFilm) {
+      dispatch(getDetail(parseInt(id)))
+    } else {
+      dispatch(getTvDetail(parseInt(id)))
+    }
 
     return () => {
       dispatch(clearDetail())
@@ -106,13 +112,21 @@ export const Detail = () => {
           </DetailPartContainer>
           <DetailPartContainer>
             <CrewContainer>
-              <CrewItem arr={crew['Director']} title='Directed By' />
-              <CrewItem arr={crew['Producer']} title='Produced By' />
-              <CrewItem arr={crew['Novel']} title='Written By' />
-              <CrewItem
-                arr={crew['Original Music Composer']}
-                title='Music By'
-              />
+              {crew?.['Director'] && (
+                <CrewItem arr={crew['Director']} title='Directed By' />
+              )}
+              {crew?.['Producer'] && (
+                <CrewItem arr={crew['Producer']} title='Produced By' />
+              )}
+              {crew?.['Novel'] && (
+                <CrewItem arr={crew['Novel']} title='Written By' />
+              )}
+              {crew?.['Original Music Composer'] && (
+                <CrewItem
+                  arr={crew['Original Music Composer']}
+                  title='Music By'
+                />
+              )}
             </CrewContainer>
           </DetailPartContainer>
           <DetailPartContainer>

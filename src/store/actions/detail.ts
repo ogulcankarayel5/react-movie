@@ -13,6 +13,7 @@ import {
   IGetDetailSuccessAction,
 } from 'store/types'
 import { MovieService } from 'services'
+import { TvService } from 'services/tv'
 //TODO:
 // store
 // actions
@@ -38,6 +39,25 @@ export const getDetail =
     const casts = await MovieService.getMovieCast(movieId)
     const videos = await MovieService.getVideos(movieId)
     const recommended = await MovieService.getRecommended(movieId)
+
+    dispatch(
+      getDetailSuccess({
+        detail,
+        casts,
+        videos,
+        recommended: recommended.results,
+      })
+    )
+  }
+
+export const getTvDetail =
+  (movieId: number) => async (dispatch: Dispatch<DetailActionTypes>) => {
+    dispatch(getDetailRequest())
+
+    const detail = await TvService.getTvDetail(movieId)
+    const casts = await TvService.getTvCast(movieId)
+    const videos = await TvService.getTvVideos(movieId)
+    const recommended = await TvService.getTvRecommendations(movieId)
 
     dispatch(
       getDetailSuccess({

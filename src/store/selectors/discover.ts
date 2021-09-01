@@ -11,8 +11,20 @@ export const getDiscoverSelector = createSelector(getDiscover, (discover) => {
   const years = discover.years
   const languages = discover.languages
   const optionsLoading = discover.optionsLoading
+  const loadMoreLoading = discover.loadMoreLoading
+  const page = discover.page
   const movies = filterMovie(discover.movies)
   const tv = filterTv(discover.tv)
 
-  return { loading, genres, years, languages, optionsLoading, movies, tv }
+  return {
+    loading,
+    genres,
+    years,
+    languages,
+    optionsLoading,
+    movies,
+    tv,
+    loadMoreLoading,
+    page,
+  }
 })
