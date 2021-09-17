@@ -19,7 +19,7 @@ export const useDetail = (type: string) => {
 
   const detailInfo = useMemo(() => {
     return info
-  }, [type])
+  }, [[type]])
 
   const trailer = useTypedSelector(getTrailer, shallowEqual)
   const starringCast = useTypedSelector(getStarringCast, shallowEqual)
