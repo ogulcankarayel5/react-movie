@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 16px;
     box-sizing: border-box;
-
     @media (max-width: ${breakPoints.md}) {
       font-size:13px;
   }
@@ -42,6 +41,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${(props) => props.theme.colors.primary};
-    height: 100%;
+  }
+
+  body,html {
+    height:100%;
   }
 `

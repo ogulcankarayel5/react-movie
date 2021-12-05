@@ -50,11 +50,7 @@ export const NavLinks = ({ onClose }: NavLinksProps): ReactElement => {
       >
         TV SERIES
       </NavItem>
-      <NavItem
-        activeStyle={{ color: '#CE1E37' }}
-        to='/sign-in'
-        onClick={onClose}
-      >
+      <NavItem activeStyle={{ color: '#CE1E37' }} to='/login' onClick={onClose}>
         LOGIN
       </NavItem>
     </NavLinksContainer>

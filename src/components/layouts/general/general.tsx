@@ -1,5 +1,5 @@
 import { Navbar } from 'components/navbar/navbar'
-import { GeneralLayoutContainer } from 'components/layouts/style'
+import { GeneralLayoutContainer } from 'components/layouts/general/style'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
