@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { type } from 'os'
 import { Middleware } from 'redux'
+import toast from 'react-hot-toast'
 import { IMovie } from 'services'
 import { AppState } from 'store/store'
 import { BACKDROP_SIZE, POSTER_SIZE, IMAGE_BASE_URL } from 'utils'
@@ -64,4 +65,23 @@ export const populateYearsMiddleware: Middleware<{}, AppState> =
     } else {
       next(action)
     }
+  }
+
+export const authErrorMiddleware: Middleware<{}, AppState> =
+  () => (next) => (action) => {
+    const type = action.type as string
+
+    if (type === 'AUTH_ERROR') {
+      const { code, message } = action.payload
+      switch (code) {
+        case 'auth/popup-closed-by-user':
+          break
+
+        default:
+          toast.error(message)
+          break
+      }
+    }
+
+    next(action)
   }

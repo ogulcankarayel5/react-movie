@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import { ButtonContainer } from 'components/button/style'
+import { LoadingState } from 'types'
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,6 +8,7 @@ export interface ButtonProps
   size?: 'block'
   rounded?: boolean
   children: ReactNode
+  loading?: LoadingState
 }
 export const Button = ({
   variant = 'primary',
@@ -14,6 +16,7 @@ export const Button = ({
   size = 'block',
   disabled,
   children,
+  loading = LoadingState.Idle,
   ...props
 }: ButtonProps) => {
   return (
@@ -24,7 +27,7 @@ export const Button = ({
       size={size}
       {...props}
     >
-      {children}
+      {loading === LoadingState.Loading ? <div>...</div> : children}
     </ButtonContainer>
   )
 }

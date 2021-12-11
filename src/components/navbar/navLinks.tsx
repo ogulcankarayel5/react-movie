@@ -1,10 +1,17 @@
 import React, { ReactElement } from 'react'
-import { NavItem, NavLinksContainer } from 'components/navbar/style'
+import {
+  NavItem,
+  NavLinksContainer,
+  NavLinksRight,
+} from 'components/navbar/style'
+import { useAuth } from 'hooks'
+import { BsFillBookmarkFill } from 'react-icons/bs'
 
 type NavLinksProps = {
   onClose: () => void
 }
 export const NavLinks = ({ onClose }: NavLinksProps): ReactElement => {
+  const { user } = useAuth()
   return (
     <NavLinksContainer>
       <NavItem
@@ -50,9 +57,18 @@ export const NavLinks = ({ onClose }: NavLinksProps): ReactElement => {
       >
         TV SERIES
       </NavItem>
-      <NavItem activeStyle={{ color: '#CE1E37' }} to='/login' onClick={onClose}>
-        LOGIN
-      </NavItem>
+      <NavLinksRight>
+        <NavItem to='/favorites'>
+          <BsFillBookmarkFill color='#CE1E37' />
+        </NavItem>
+        <NavItem
+          activeStyle={{ color: '#CE1E37' }}
+          to='/login'
+          onClick={onClose}
+        >
+          {user ? user.displayName : 'LOGIN'}
+        </NavItem>
+      </NavLinksRight>
     </NavLinksContainer>
   )
 }

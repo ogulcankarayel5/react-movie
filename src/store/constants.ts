@@ -29,3 +29,7 @@ export const LOAD_MORE_MOVIE_SUCCESS = 'LOAD_MORE_MOVIE_SUCCESS'
 export const RESET_PAGE = 'RESET_PAGE'
 export const RESET_LIST = 'RESET_LIST'
 export const SET_PAGE = 'SET_PAGE'
+
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_REQUEST = 'AUTH_REQUEST'
+export const AUTH_ERROR = 'AUTH_ERROR'

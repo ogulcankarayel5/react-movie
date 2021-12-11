@@ -3,29 +3,27 @@ import React, { ReactElement } from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
 import { GeneralLayout } from '../components/layouts/general'
 
-export interface IPublicRoute extends RouteProps {
-  restricted?: boolean
+export interface IPrivateRoute extends RouteProps {
   component: any
   layout?: any
 }
 
-export const PublicRoute = ({
+export const PrivateRoute = ({
   component: Component,
-  restricted = false,
   layout: Layout = GeneralLayout,
   ...rest
-}: IPublicRoute): ReactElement => {
+}: IPrivateRoute): ReactElement => {
   const { isAuthenticated } = useAuth()
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated && restricted ? (
-          <Redirect to='/' />
-        ) : (
+        isAuthenticated ? (
           <Layout>
             <Component {...props} />
           </Layout>
+        ) : (
+          <Redirect to='/login' />
         )
       }
     />

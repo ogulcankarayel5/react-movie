@@ -16,8 +16,10 @@ import {
 import { IconType } from 'react-icons'
 import { MdEmail } from 'react-icons/all'
 import { useForm } from 'react-hook-form'
-
-const icons = [AiFillFacebook, AiOutlineGoogle, AiFillGithub]
+import { useDispatch } from 'react-redux'
+import { login, loginWithGoogle } from 'store'
+import { useAuth } from 'hooks'
+const icons = [AiFillFacebook, AiFillGithub]
 
 type FormValues = {
   email: string
@@ -25,21 +27,23 @@ type FormValues = {
 }
 
 export const Login = () => {
+  const dispatch = useDispatch()
+  const { loading } = useAuth()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>()
 
-  const onSubmit = (d: any) => {
+  const onSubmit = (form: FormValues) => {
     // eslint-disable-next-line no-console
-    console.log(d)
+    const { email, password } = form
+    dispatch(login(email, password))
   }
 
   return (
     <Container>
       <FormContainer>
-        <button></button>
         <FormText size='large' text='Welcome' />
         <TextInput
           error={errors.email && errors.email.message}
@@ -60,13 +64,17 @@ export const Login = () => {
             minLength: { value: 4, message: 'Min 4 character' },
           })}
           placeholder='Password'
+          type='password'
           icon={<AiFillLock size={24} color='#E4E4E4' />}
         />
-        <Button onClick={handleSubmit(onSubmit)} rounded>
+        <Button loading={loading} onClick={handleSubmit(onSubmit)} rounded>
           Login
         </Button>
         <FormText text='Or' size='small' />
         <IconContainer>
+          <RoundedIcon onClick={() => dispatch(loginWithGoogle())}>
+            <AiOutlineGoogle size={24} color='#E4E4E4' />
+          </RoundedIcon>
           {icons.map((Item: IconType, index) => (
             <RoundedIcon key={index}>
               <Item size={24} color='#E4E4E4' />

@@ -5,7 +5,7 @@ export type InputProps = {
   touched?: boolean
   icon?: ReactNode
   error?: string
-} & React.HTMLAttributes<HTMLInputElement>
+} & React.InputHTMLAttributes<HTMLInputElement>
 
 export const TextInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ icon, error, ...props }, ref) => {

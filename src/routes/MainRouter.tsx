@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react'
 import lazy from 'routes/lazy'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
+import { history } from 'utils'
 import { PublicRoute } from 'routes'
 import { Loading } from 'components'
 import { AuthLayout } from 'components/layouts/auth'
+import { PrivateRoute } from './PrivateRoute'
 
 const Detail = lazy(() => import('pages'), 'Detail')
 const Home = lazy(() => import('pages'), 'Home')
@@ -13,7 +15,7 @@ const Login = lazy(() => import('pages'), 'Login')
 
 export const MainRouter = (): React.ReactElement => {
   return (
-    <Router>
+    <Router history={history}>
       <Suspense fallback={<Loading />}>
         <Switch>
           <PublicRoute exact path='/' component={Home} />
@@ -29,8 +31,13 @@ export const MainRouter = (): React.ReactElement => {
             )}
           />
 
-          <PublicRoute path='/login' component={Login} layout={AuthLayout} />
-
+          <PublicRoute
+            path='/login'
+            component={Login}
+            layout={AuthLayout}
+            restricted
+          />
+          <PrivateRoute path='/favorites' component={() => <div>fav</div>} />
           <PublicRoute component={() => <div>404</div>} />
         </Switch>
       </Suspense>

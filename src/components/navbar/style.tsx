@@ -20,16 +20,20 @@ export const NavLinksContainer = styled.div`
   display: flex;
   flex: 1;
 
-  & :last-child {
-    margin-left: auto;
-  }
-
   @media (max-width: ${breakPoints.lg}) {
     display: flex;
     flex-direction: column;
-    & :last-child {
-      margin-left: initial;
-    }
+  }
+`
+
+export const NavLinksRight = styled.div`
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: ${breakPoints.lg}) {
+    margin-left: initial;
+    flex-direction: column;
   }
 `
 export const LeftSection = styled.div`
