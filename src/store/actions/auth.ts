@@ -7,9 +7,9 @@ import {
   IAuthSuccessAction,
 } from '../types'
 import { Dispatch } from 'redux'
-import { UserService } from '../../services/user'
 import { AUTH_ERROR } from 'store'
 import { history } from 'utils'
+import { AuthService } from 'services'
 
 export const authRequest = (): IAuthRequestAction => ({
   type: AUTH_REQUEST,
@@ -31,7 +31,7 @@ export const login =
     dispatch(authRequest())
 
     try {
-      await UserService.loginWithEmailAndPassword(email, password)
+      await AuthService.loginWithEmailAndPassword(email, password)
       toast.success('Login is successful')
       history.push('/')
     } catch (error) {
@@ -44,7 +44,7 @@ export const loginWithGoogle =
     dispatch(authRequest())
 
     try {
-      await UserService.loginWithGoogle()
+      await AuthService.loginWithGoogle()
       toast.success('Login is successful')
       history.push('/')
     } catch (error) {

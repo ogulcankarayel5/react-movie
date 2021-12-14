@@ -12,6 +12,7 @@ import { Loading } from 'components'
 export const Home = (): ReactElement => {
   const { homeMovies } = useMovie()
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getHomeMovies())
   }, [])

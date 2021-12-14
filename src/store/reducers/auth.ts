@@ -5,6 +5,10 @@ import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR } from '../constants'
 const initialState: IAuthState = {
   user: null,
   loading: LoadingState.Idle,
+  favorites: {
+    loading: LoadingState.Idle,
+    data: [],
+  },
 }
 
 export const authReducer = (

@@ -3,11 +3,18 @@ import {
   CardContainer,
   FilmContainer,
   FilmTitle,
+  AddIcon,
+  LoadingContainer,
 } from 'components/movies/style'
 import { Card } from 'components'
 import { IMovie, ITV } from 'services'
 import { getYear, IMAGE_BASE_URL } from 'utils'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addFavorite } from 'store'
+import { useUser } from 'hooks'
+import { LoadingState } from 'types'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 type MoviesProps = {
   title?: string
@@ -32,6 +39,7 @@ export const FilmSeries = ({ films }: FilmsProps) => {
       {films?.map((item, index) => (
         <MovieCard
           key={`${item.id} - ${index}`}
+          id={item.id}
           link={`/detail/movie/${item.id}`}
           path={item.poster_path}
           text={item.original_title}
@@ -50,6 +58,7 @@ export const TvSeries = ({ tvSeries }: TvSeriesProps) => {
       {tvSeries?.map((item, index) => (
         <MovieCard
           key={`${item.id} - ${index}`}
+          id={item.id}
           link={`/detail/tv/${item.id}`}
           path={item.poster_path}
           text={item.original_name}
@@ -61,27 +70,45 @@ export const TvSeries = ({ tvSeries }: TvSeriesProps) => {
 }
 
 type MovieCardProps = {
+  id: number
   path: string | null
   text: string
   date: string
   link: string
 }
-export const MovieCard = ({ link, path, text, date }: MovieCardProps) => {
+export const MovieCard = ({ id, link, path, text, date }: MovieCardProps) => {
+  const imgPath = path?.includes(IMAGE_BASE_URL)
+    ? path
+    : `${IMAGE_BASE_URL}/w780/${path}`
+  const dateText = getYear(date)
+
   return (
     <Card>
+      <FavoriteIcon {...{ id, link, path, text, date }} />
       <Link to={link}>
-        <Card.Image
-          src={
-            path?.includes(IMAGE_BASE_URL)
-              ? path
-              : `${IMAGE_BASE_URL}/w780/${path}`
-          }
-        />
+        <Card.Image src={imgPath} />
       </Link>
       <Card.Footer>
         <Card.Text text={text} />
-        <Card.SubText text={getYear(date)} />
+        <Card.SubText text={dateText} />
       </Card.Footer>
     </Card>
+  )
+}
+
+export const FavoriteIcon = (data: MovieCardProps) => {
+  const { loading } = useUser(data.id)
+  const dispatch = useDispatch()
+  const addToFav = async () => {
+    dispatch(addFavorite(data))
+  }
+
+  //show loading per item
+  return loading && loading.value === LoadingState.Loading ? (
+    <LoadingContainer>
+      <ClipLoader color='#CE1E37' size={24} />
+    </LoadingContainer>
+  ) : (
+    <AddIcon size={24} color='#CE1E37' onClick={addToFav} />
   )
 }

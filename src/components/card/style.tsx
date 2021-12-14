@@ -27,9 +27,6 @@ export const StyledImage = styled.img<StyledCardProps>`
   min-width: 75px;
   object-fit: contain;
   cursor: pointer;
-  &:hover {
-    transform: scale(1.02);
-  }
   @media (max-width: ${breakPoints.md}) {
     width: 75px;
     height: 120px;

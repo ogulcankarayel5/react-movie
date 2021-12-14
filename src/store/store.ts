@@ -1,4 +1,4 @@
-import { authReducer } from './reducers/auth'
+import { authReducer, userReducer } from './reducers'
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux'
 import thunk, { ThunkMiddleware } from 'redux-thunk'
@@ -11,6 +11,7 @@ import {
   DetailActionTypes,
   DiscoverActionTypes,
   AuthActionTypes,
+  UserActionTypes,
 } from 'store/types'
 import { createLogger } from 'redux-logger'
 
@@ -23,6 +24,7 @@ declare global {
 export const rootReducer = combineReducers({
   movieReducer,
   authReducer,
+  userReducer,
 })
 
 export type AppActions =
@@ -31,6 +33,7 @@ export type AppActions =
   | DetailActionTypes
   | DiscoverActionTypes
   | AuthActionTypes
+  | UserActionTypes
 
 export type AppState = ReturnType<typeof rootReducer>
 

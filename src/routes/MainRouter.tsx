@@ -12,6 +12,7 @@ const Home = lazy(() => import('pages'), 'Home')
 const Films = lazy(() => import('pages'), 'Films')
 const Tv = lazy(() => import('pages'), 'Tv')
 const Login = lazy(() => import('pages'), 'Login')
+const Favorites = lazy(() => import('pages'), 'Favorites')
 
 export const MainRouter = (): React.ReactElement => {
   return (
@@ -37,7 +38,7 @@ export const MainRouter = (): React.ReactElement => {
             layout={AuthLayout}
             restricted
           />
-          <PrivateRoute path='/favorites' component={() => <div>fav</div>} />
+          <PrivateRoute path='/favorites' component={Favorites} />
           <PublicRoute component={() => <div>404</div>} />
         </Switch>
       </Suspense>
