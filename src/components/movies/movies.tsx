@@ -100,10 +100,16 @@ export const FavoriteIcon = (data: MovieCardProps) => {
   const { loading } = useUser(data.id)
   const dispatch = useDispatch()
   const addToFav = async () => {
-    dispatch(addFavorite(data))
+    dispatch(
+      addFavorite({
+        ...data,
+        poster_path: data.path,
+        original_title: data.text,
+        release_date: data.date,
+      })
+    )
   }
 
-  //show loading per item
   return loading && loading.value === LoadingState.Loading ? (
     <LoadingContainer>
       <ClipLoader color='#CE1E37' size={24} />

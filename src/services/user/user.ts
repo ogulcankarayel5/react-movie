@@ -1,10 +1,4 @@
-import {
-  arrayUnion,
-  collection,
-  doc,
-  getDocs,
-  setDoc,
-} from 'firebase/firestore'
+import { arrayUnion, doc, getDoc, setDoc } from 'firebase/firestore'
 import { auth, db, provider } from 'plugins/firebase'
 
 const loginWithEmailAndPassword = async (email: string, password: string) => {
@@ -15,9 +9,9 @@ const loginWithGoogle = async () => {
   await auth.signInWithPopup(provider)
 }
 
-const getFavorites = async () => {
-  const ref = collection(db, 'favorites')
-  const data = await getDocs(ref)
+const getFavorites = async (userId: string) => {
+  const docRef = doc(db, 'favorites', userId)
+  const data = await getDoc(docRef)
 
   return data
 }

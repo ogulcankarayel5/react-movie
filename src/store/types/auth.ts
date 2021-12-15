@@ -7,10 +7,6 @@ import firebase from 'firebase/compat/app'
 export interface IAuthState {
   user: firebase.User | null
   loading: LoadingState
-  favorites: {
-    loading: LoadingState
-    data: any
-  }
 }
 
 export interface IAuthRequestAction extends Action {

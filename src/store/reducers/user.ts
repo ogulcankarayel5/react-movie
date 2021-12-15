@@ -5,12 +5,20 @@ import {
   ADD_FAVORITE_SUCCESS,
 } from '../constants'
 import { IUserState, UserActionTypes } from 'store/types/user'
+import {
+  GET_FAVORITES_ERROR,
+  GET_FAVORITES_REQUEST,
+  GET_FAVORITES_SUCCESS,
+} from 'store/constants'
 
 const initialState: IUserState = {
-  loading: {},
-  data: [],
+  favorites: {
+    data: [],
+    addOrRemoveloading: {},
+    loading: LoadingState.Idle,
+  },
 }
-//TODO: change loading
+
 export const userReducer = (
   state = initialState,
   action: UserActionTypes
@@ -19,34 +27,68 @@ export const userReducer = (
     case ADD_FAVORITE_REQUEST:
       return {
         ...state,
-        loading: {
-          ...state.loading,
-          [action.payload]: {
-            ...state.loading[action.payload],
-            value: LoadingState.Loading,
+        favorites: {
+          ...state.favorites,
+          addOrRemoveloading: {
+            ...state.favorites.addOrRemoveloading,
+            [action.payload]: {
+              ...state.favorites.addOrRemoveloading[action.payload],
+              value: LoadingState.Loading,
+            },
           },
         },
       }
     case ADD_FAVORITE_SUCCESS:
       return {
         ...state,
-        loading: {
-          ...state.loading,
-          [action.payload]: {
-            ...state.loading[action.payload],
-            value: LoadingState.Succeeded,
+        favorites: {
+          ...state.favorites,
+          addOrRemoveloading: {
+            ...state.favorites.addOrRemoveloading,
+            [action.payload]: {
+              ...state.favorites.addOrRemoveloading[action.payload],
+              value: LoadingState.Succeeded,
+            },
           },
         },
       }
     case ADD_FAVORITE_ERROR:
       return {
         ...state,
-        loading: {
-          ...state.loading,
-          [action.payload]: {
-            ...state.loading[action.payload],
-            value: LoadingState.Succeeded,
+        favorites: {
+          ...state.favorites,
+          addOrRemoveloading: {
+            ...state.favorites.addOrRemoveloading,
+            [action.payload]: {
+              ...state.favorites.addOrRemoveloading[action.payload],
+              value: LoadingState.Failed,
+            },
           },
+        },
+      }
+    case GET_FAVORITES_REQUEST:
+      return {
+        ...state,
+        favorites: {
+          ...state.favorites,
+          loading: LoadingState.Loading,
+        },
+      }
+    case GET_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        favorites: {
+          ...state.favorites,
+          loading: LoadingState.Succeeded,
+          data: action.payload,
+        },
+      }
+    case GET_FAVORITES_ERROR:
+      return {
+        ...state,
+        favorites: {
+          ...state.favorites,
+          loading: LoadingState.Failed,
         },
       }
     default:

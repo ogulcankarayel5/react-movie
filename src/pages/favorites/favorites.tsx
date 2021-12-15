@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { doc, getDoc } from '@firebase/firestore'
-import { db } from 'plugins/firebase'
-import firebase from 'firebase/compat'
+import React, { useEffect } from 'react'
+import { useUser } from 'hooks'
+import { useDispatch } from 'react-redux'
+import { getFavorites } from 'store'
+import { LoadingState } from 'types'
+import { FilmSeries, Loading, Movies } from 'components'
 
 export const Favorites = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [favorites, setFavorites] = useState(null)
-  const docRef = doc(db, 'favorites', firebase.auth().currentUser?.uid || '')
+  const dispatch = useDispatch()
+  const { favorites, favoritesLoading } = useUser()
   useEffect(() => {
-    const getData = async () => {
-      const docSnap = await getDoc(docRef)
-
-      if (docSnap.exists()) {
-        setFavorites(docSnap.data().movies)
-      }
-    }
-    getData()
+    dispatch(getFavorites())
   }, [])
 
-  return <div />
+  return favoritesLoading === LoadingState.Loading ? (
+    <Loading />
+  ) : (
+    <Movies>
+      <FilmSeries films={favorites} />
+    </Movies>
+  )
 }
