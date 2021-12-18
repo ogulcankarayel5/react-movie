@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   CardContainer,
   FilmContainer,
   FilmTitle,
   AddIcon,
   LoadingContainer,
+  RemoveIcon,
 } from 'components/movies/style'
 import { Card } from 'components'
 import { IMovie, ITV } from 'services'
 import { getYear, IMAGE_BASE_URL } from 'utils'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { addFavorite } from 'store'
+import { addFavorite, removeFavorite } from 'store'
 import { useUser } from 'hooks'
 import { LoadingState } from 'types'
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -97,23 +98,32 @@ export const MovieCard = ({ id, link, path, text, date }: MovieCardProps) => {
 }
 
 export const FavoriteIcon = (data: MovieCardProps) => {
-  const { loading } = useUser(data.id)
+  const { loading, favorites } = useUser(data.id)
+  const isFavorite = useMemo(() => {
+    return favorites.find(({ id }: any) => id === data.id)
+  }, [favorites])
+
+  const updatedData = {
+    ...data,
+    poster_path: data.path,
+    original_title: data.text,
+    release_date: data.date,
+  }
   const dispatch = useDispatch()
-  const addToFav = async () => {
-    dispatch(
-      addFavorite({
-        ...data,
-        poster_path: data.path,
-        original_title: data.text,
-        release_date: data.date,
-      })
-    )
+  const addToFav = () => {
+    dispatch(addFavorite(updatedData))
+  }
+
+  const removeFromFav = () => {
+    dispatch(removeFavorite(updatedData))
   }
 
   return loading && loading.value === LoadingState.Loading ? (
     <LoadingContainer>
       <ClipLoader color='#CE1E37' size={24} />
     </LoadingContainer>
+  ) : isFavorite ? (
+    <RemoveIcon size={24} color='#CE1E37' onClick={removeFromFav} />
   ) : (
     <AddIcon size={24} color='#CE1E37' onClick={addToFav} />
   )

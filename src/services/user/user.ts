@@ -1,4 +1,11 @@
-import { arrayUnion, doc, getDoc, setDoc } from 'firebase/firestore'
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore'
 import { auth, db, provider } from 'plugins/firebase'
 
 const loginWithEmailAndPassword = async (email: string, password: string) => {
@@ -23,11 +30,20 @@ const addFavorite = async (data: any, userId: string) => {
     { merge: true }
   )
 }
+
+const removeFavorite = async (data: any, userId: string) => {
+  const docRef = doc(db, 'favorites', userId)
+  await updateDoc(docRef, {
+    movies: arrayRemove(data),
+  })
+}
+
 const userService = {
   loginWithEmailAndPassword,
   loginWithGoogle,
   getFavorites,
   addFavorite,
+  removeFavorite,
 }
 
 export default userService

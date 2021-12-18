@@ -44,11 +44,11 @@ const loggerMiddleware = createLogger({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export const middleware = [
-  loggerMiddleware,
   thunk as ThunkMiddleware<AppState, AppActions>,
   //changeImagePathMiddleware,
   populateYearsMiddleware,
   authErrorMiddleware,
+  loggerMiddleware,
 ]
 
 export const useTypedSelector: TypedUseSelectorHook<AppState> = useSelector

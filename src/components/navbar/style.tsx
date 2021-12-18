@@ -90,6 +90,7 @@ export const NavText = styled(Text)`
   color: #ededef;
   letter-spacing: 5px;
 `
+
 export const NavIconContainer = styled.div<{ expanded: boolean }>`
   display: flex;
   flex-direction: column;

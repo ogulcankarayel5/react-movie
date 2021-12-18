@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useUser } from 'hooks'
 import { useDispatch } from 'react-redux'
-import { getFavorites } from 'store'
+import { getFavorites, resetFavorites } from 'store'
 import { LoadingState } from 'types'
 import { FilmSeries, Loading, Movies } from 'components'
 
@@ -10,13 +10,21 @@ export const Favorites = () => {
   const { favorites, favoritesLoading } = useUser()
   useEffect(() => {
     dispatch(getFavorites())
+
+    return () => {
+      dispatch(resetFavorites())
+    }
   }, [])
 
-  return favoritesLoading === LoadingState.Loading ? (
-    <Loading />
-  ) : (
-    <Movies>
-      <FilmSeries films={favorites} />
-    </Movies>
+  if (favoritesLoading === LoadingState.Loading) {
+    return <Loading />
+  }
+  return (
+    favoritesLoading === LoadingState.Succeeded &&
+    favorites && (
+      <Movies title='Favorites'>
+        <FilmSeries films={favorites} />
+      </Movies>
+    )
   )
 }

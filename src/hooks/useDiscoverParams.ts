@@ -9,6 +9,7 @@ import {
   setPage,
 } from 'store/actions/discover'
 import { FilterTypes } from 'components'
+import { useFirstRender } from 'hooks'
 
 interface IDiscoverProps {
   [key: string]: string
@@ -18,6 +19,7 @@ export const useDiscoverParams = (
   type: FilterTypes
 ) => {
   const [value, setValue] = useState(initialValues)
+  const firstRender = useFirstRender()
   const dispatch = useDispatch()
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target
@@ -76,8 +78,13 @@ export const useDiscoverParams = (
     }
   }, [])
 
+  // call reset 2 times on mount
+
   useEffect(() => {
-    reset()
+    if (!firstRender) {
+      reset()
+    }
+
     populateParams()
   }, [value])
 

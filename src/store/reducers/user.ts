@@ -9,6 +9,10 @@ import {
   GET_FAVORITES_ERROR,
   GET_FAVORITES_REQUEST,
   GET_FAVORITES_SUCCESS,
+  RESET_FAVORITES,
+  REMOVE_FAVORITE_ERROR,
+  REMOVE_FAVORITE_REQUEST,
+  REMOVE_FAVORITE_SUCCESS,
 } from 'store/constants'
 
 const initialState: IUserState = {
@@ -25,6 +29,7 @@ export const userReducer = (
 ): IUserState => {
   switch (action.type) {
     case ADD_FAVORITE_REQUEST:
+    case REMOVE_FAVORITE_REQUEST:
       return {
         ...state,
         favorites: {
@@ -43,16 +48,38 @@ export const userReducer = (
         ...state,
         favorites: {
           ...state.favorites,
+
+          data: [...state.favorites.data, action.payload],
           addOrRemoveloading: {
             ...state.favorites.addOrRemoveloading,
-            [action.payload]: {
-              ...state.favorites.addOrRemoveloading[action.payload],
+            [action.payload.id]: {
+              ...state.favorites.addOrRemoveloading[action.payload.id],
               value: LoadingState.Succeeded,
             },
           },
         },
       }
+    case REMOVE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorites: {
+          ...state.favorites,
+
+          data: state.favorites.data.filter(
+            (item: any) => item.id !== action.payload.id
+          ),
+          addOrRemoveloading: {
+            ...state.favorites.addOrRemoveloading,
+            [action.payload.id]: {
+              ...state.favorites.addOrRemoveloading[action.payload.id],
+              value: LoadingState.Succeeded,
+            },
+          },
+        },
+      }
+
     case ADD_FAVORITE_ERROR:
+    case REMOVE_FAVORITE_ERROR:
       return {
         ...state,
         favorites: {
@@ -91,6 +118,15 @@ export const userReducer = (
           loading: LoadingState.Failed,
         },
       }
+    case RESET_FAVORITES:
+      return {
+        ...state,
+        favorites: {
+          ...state.favorites,
+          loading: LoadingState.Idle,
+        },
+      }
+
     default:
       return state
   }
