@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
-import { getFirestore } from 'firebase/firestore'
 import { initializeFirestore } from 'firebase/firestore'
 
 const app = firebase.initializeApp({
@@ -15,9 +14,9 @@ const app = firebase.initializeApp({
 })
 
 // Initialize Firebase
+const db = initializeFirestore(app, { experimentalForceLongPolling: true })
+
 const auth = app.auth()
 const provider = new firebase.auth.GoogleAuthProvider()
-initializeFirestore(app, { experimentalForceLongPolling: true })
-const db = getFirestore(app)
 
 export { auth, provider, db }
